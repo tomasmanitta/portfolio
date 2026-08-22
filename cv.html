@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Tomás Galo Manitta — Diseñador Gráfico | CV</title>
+<meta name="description" content="Currículum de Tomás Galo Manitta, diseñador gráfico en Córdoba, Argentina."/>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+  doc-page:not(:defined) { visibility: hidden; }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --display: 'Space Grotesk', system-ui, sans-serif;
+    --body: 'Inter', system-ui, sans-serif;
+    --bg: #F5F4F0;
+    --text: #111111;
+    --muted: #6B6B66;
+    --accent: #D8410A;
+    --stroke: #D8D6D0;
+    --grid: rgba(17,17,17,0.09);
+  }
+
+  .page {
+    background-color: var(--bg);
+    background-image: radial-gradient(var(--grid) 1.2px, transparent 1.2px);
+    background-size: 26px 26px;
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+    color: var(--text);
+    font-family: var(--body);
+    font-weight: 400;
+    font-size: 9.5pt;
+    line-height: 1.42;
+    padding: 0.42in 0.66in 0.28in;
+    display: flex;
+    flex-direction: column;
+    gap: 9pt;
+    text-wrap: pretty;
+  }
+
+  a { color: var(--text); text-decoration: none; }
+  a:hover { color: var(--accent); }
+
+  /* ── ENCABEZADO ── */
+  .head {
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 8pt;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 18pt;
+    align-items: start;
+  }
+  .foto {
+    width: 1.16in; height: 1.16in;
+    border: 1px solid var(--stroke);
+  }
+  .eyebrow {
+    font-family: var(--body);
+    font-weight: 500;
+    font-size: 7pt;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--accent);
+    margin-bottom: 5pt;
+  }
+  h1 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 23pt;
+    letter-spacing: -0.03em;
+    line-height: 1;
+  }
+  .rol {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 11pt;
+    letter-spacing: -0.01em;
+    color: var(--muted);
+    margin-top: 5pt;
+  }
+  .datos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4pt 14pt;
+    margin-top: 9pt;
+    font-size: 9pt;
+    color: var(--text);
+  }
+  .datos span { color: var(--muted); }
+  .datos strong { font-weight: 500; color: var(--text); }
+
+  /* ── SECCIONES ── */
+  section { display: flex; flex-direction: column; gap: 7pt; }
+  h2 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 8pt;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--accent);
+    padding-bottom: 4pt;
+    border-bottom: 1px solid var(--stroke);
+  }
+
+  .perfil { font-size: 9.8pt; line-height: 1.5; max-width: 88ch; }
+
+  .item { display: grid; grid-template-columns: 1.18in 1fr; gap: 13pt; break-inside: avoid; }
+  .fecha {
+    font-family: var(--display);
+    font-weight: 500;
+    font-size: 8.6pt;
+    letter-spacing: 0.02em;
+    color: var(--muted);
+    padding-top: 1.5pt;
+  }
+  .puesto {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 10.4pt;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+  .lugar {
+    font-size: 9.2pt;
+    font-weight: 500;
+    color: var(--accent);
+    margin-top: 1pt;
+  }
+  .item p { margin-top: 2pt; max-width: 74ch; color: #2A2A28; }
+  .item ul { margin-top: 2.5pt; padding-left: 12pt; max-width: 76ch; color: #2A2A28; }
+  .item li { margin-bottom: 1.5pt; }
+
+  .cols { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10pt 22pt; }
+  .cols h3 {
+    font-family: var(--display);
+    font-weight: 700;
+    font-size: 9.2pt;
+    margin-bottom: 3pt;
+  }
+  .cols p, .cols ul { font-size: 9.2pt; color: #2A2A28; }
+  .cols ul { padding-left: 12pt; }
+
+  @media screen and (max-width: 700px) {
+    .item { grid-template-columns: 1fr; gap: 3pt; }
+    .cols { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+<doc-page>
+  <section class="page">
+
+    <header class="head">
+      <image-slot class="foto" id="cv-foto" shape="rect" placeholder="Foto"></image-slot>
+      <div>
+      <p class="eyebrow">Currículum Vitae</p>
+      <h1>Tomás Galo Manitta</h1>
+      <p class="rol">Diseñador gráfico</p>
+      <div class="datos">
+        <span><strong>Córdoba</strong>, Argentina</span>
+        <span>Argentino</span>
+        <span><a href="tel:+543516258914"><strong>351 625 8914</strong></a></span>
+        <span><a href="mailto:tomasmanitta@gmail.com"><strong>tomasmanitta@gmail.com</strong></a></span>
+      </div>
+      </div>
+    </header>
+
+    <section>
+      <h2>Perfil</h2>
+      <p class="perfil">Diseñador gráfico con más de 8 años de experiencia en identidad visual, diseño editorial, comunicación comercial y diseño de espacios. Trabajo la comunicación de una marca como un sistema completo, con experiencia en equipos de marketing, dirección creativa y producción gráfica.</p>
+    </section>
+
+    <section>
+      <h2>Experiencia laboral</h2>
+
+      <div class="item">
+        <p class="fecha">Nov 2023 — Jul 2026</p>
+        <div>
+          <p class="puesto">Diseñador gráfico</p>
+          <p class="lugar">Foxbox Group — área de Marketing</p>
+          <p>Diseño y dirección creativa de la comunicación de las marcas representadas por el grupo: Foxbox, Aló, Haxly y EcoFlow.</p>
+          <ul>
+            <li>Placas comerciales para e-commerce y marketplaces, banners, email marketing y animaciones en GIF.</li>
+            <li>Material POP y piezas de exhibición para retail, catálogos y diseño editorial de producto.</li>
+            <li>Identidad visual de marcas propias y dirección creativa de campañas estacionales.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="fecha">Ene 2022 — Abr 2023</p>
+        <div>
+          <p class="puesto">Diseñador y preimpresión</p>
+          <p class="lugar">Imprenta TintaPapel</p>
+          <p>Preimpresión para offset: originales, maquetación e imposición. Diseño de producto, papelería y editorial para clientes de la imprenta.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="fecha">2021</p>
+        <div>
+          <p class="puesto">Diseñador de material educativo</p>
+          <p class="lugar">Agencia Mentes en Línea</p>
+          <p>Diseño y montaje de cursos y material educativo para universidades nacionales y extranjeras en plataformas de e-learning.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="fecha">2019 — actualidad</p>
+        <div>
+          <p class="puesto">Diseñador gráfico freelance</p>
+          <p class="lugar">Proyectos independientes</p>
+          <p>Identidades visuales para empresas emergentes, portadas de libros y maquetación, material lúdico y coleccionable, y piezas promocionales para productos y eventos.</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="fecha">2016 — 2019</p>
+        <div>
+          <p class="puesto">Experiencia previa fuera del diseño</p>
+          <p>Oteca (selección de personal), Bonafide (atención al cliente y barista) y SST Materiales Eléctricos (atención al público, pedidos e inventario).</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Formación</h2>
+
+      <div class="item">
+        <p class="fecha">2022 — actualidad</p>
+        <div>
+          <p class="puesto">Licenciatura en Diseño <span style="font-family:var(--body);font-weight:400;font-size:9.4pt;color:var(--muted)">— cursado completo, trabajo final en curso</span></p>
+          <p class="lugar">UPC — Escuela Superior “Lino E. Spilimbergo”</p>
+        </div>
+      </div>
+
+      <div class="item">
+        <p class="fecha">2018 — 2021</p>
+        <div>
+          <p class="puesto">Técnico en Diseño Gráfico y Publicitario</p>
+          <p class="lugar">UPC — Escuela Superior “Lino E. Spilimbergo”</p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Conocimientos</h2>
+      <div class="cols">
+        <p><strong>Software:</strong> paquete Adobe, con manejo avanzado de Photoshop e Illustrator.</p>
+        <p><strong>Producción gráfica:</strong> preimpresión y sistemas de impresión.</p>
+        <p><strong>Idiomas:</strong> español nativo, inglés intermedio escrito y oral.</p>
+      </div>
+    </section>
+
+  </section>
+</doc-page>
+<script src="./image-slot.js"></script>
+<script src="./doc-page.js"></script>
+</body>
+</html>

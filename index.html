@@ -1,0 +1,2802 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Tomás Manitta — Diseñador Gráfico en Córdoba</title>
+  <meta name="description" content="Portfolio de Tomás Manitta — Diseñador Gráfico en Córdoba, Argentina. Branding, editorial, placas comerciales, email marketing, stands y muebles de exhibición."/>
+  <meta name="author" content="Tomás Manitta"/>
+  <meta name="theme-color" content="#F5F4F0"/>
+  <link rel="canonical" href="https://tomasmanitta.github.io/"/>
+
+  <!-- Open Graph / WhatsApp / redes -->
+  <meta property="og:type" content="website"/>
+  <meta property="og:locale" content="es_AR"/>
+  <meta property="og:site_name" content="Tomás Manitta"/>
+  <meta property="og:title" content="Tomás Manitta — Diseñador Gráfico"/>
+  <meta property="og:description" content="Branding, editorial, placas comerciales, email marketing, stands y muebles de exhibición. Córdoba, Argentina."/>
+  <meta property="og:url" content="https://tomasmanitta.github.io/"/>
+  <meta property="og:image" content="https://tomasmanitta.github.io/imagenes/og-preview.png"/>
+  <meta property="og:image:width" content="1200"/>
+  <meta property="og:image:height" content="630"/>
+  <meta property="og:image:type" content="image/png"/>
+  <meta property="og:image:alt" content="Tomás Manitta — Portfolio de Diseño Gráfico"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+  <meta name="twitter:title" content="Tomás Manitta — Diseñador Gráfico"/>
+  <meta name="twitter:description" content="Branding, editorial, placas comerciales, email marketing, stands y muebles de exhibición. Córdoba, Argentina."/>
+  <meta name="twitter:image" content="https://tomasmanitta.github.io/imagenes/og-preview.png"/>
+
+  <link rel="icon" href="favicon.svg" type="image/svg+xml"/>
+  <link rel="apple-touch-icon" href="favicon.svg"/>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --pad-x: clamp(4rem, 13vw, 16rem);
+      --display:   'Space Grotesk', system-ui, sans-serif;
+      --bg:        #0E0E0E;
+      --surface:   #161616;
+      --border:    #2A2A2A;
+      --text:      #F2F0EB;
+      --muted:     #888888;
+      --accent:    #FF5C1A;
+      --accent-2:  #E04B10;
+      --stroke:    #2A2A2A;
+      --overlay:   rgba(14,14,14,0.95);
+      --grid:      rgba(242,240,235,0.075);
+      --cta-text:  #0E0E0E;
+      --nav-bg:    rgba(14,14,14,0.85);
+      --menu-bg:   #0E0E0E;
+    }
+
+    body.light-mode {
+      --bg:        #F5F4F0;
+      --surface:   #EBEBE7;
+      --border:    #D8D6D0;
+      --text:      #111111;
+      --muted:     #6B6B66;
+      --accent:    #D8410A;
+      --accent-2:  #B83607;
+      --stroke:    #D8D6D0;
+      --overlay:   rgba(245,244,240,0.95);
+      --grid:      rgba(17,17,17,0.09);
+      --cta-text:  #FFFFFF;
+      --nav-bg:    rgba(245,244,240,0.88);
+      --menu-bg:   #F5F4F0;
+    }
+
+    html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+    body {
+      background-color: var(--bg);
+      background-image: radial-gradient(var(--grid) 1.2px, transparent 1.2px);
+      background-size: 26px 26px;
+      color: var(--text);
+      font-family: 'Inter', system-ui, sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      overflow-x: hidden;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    body.menu-open { overflow: hidden; }
+
+    a { color: var(--accent); }
+    a:hover { color: var(--accent-2); }
+
+    ::selection { background: var(--accent); color: #fff; }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 3px;
+    }
+
+    .skip-link {
+      position: absolute; left: -9999px; top: 0;
+      background: var(--accent); color: #fff;
+      padding: 0.7rem 1.2rem; z-index: 500;
+      font-size: 0.8rem; letter-spacing: 0.1em; text-transform: uppercase;
+      text-decoration: none;
+    }
+    .skip-link:focus { left: 0; color: #fff; }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0;
+      z-index: 300;
+      height: 64px;
+      display: flex; justify-content: space-between; align-items: center;
+      padding: 0 var(--pad-x);
+      background: var(--nav-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.05rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+    }
+    .nav-logo {
+      opacity: 0;
+      transform: translateY(-4px);
+      pointer-events: none;
+      transition: opacity 0.3s ease, transform 0.3s ease;
+    }
+    .nav-logo.logo-visible {
+      opacity: 1;
+      transform: none;
+      pointer-events: auto;
+    }
+    .nav-logo:hover { color: var(--text); }
+    .nav-logo span { color: var(--accent); }
+
+    .nav-right {
+      display: flex;
+      align-items: center;
+      gap: 2.4rem;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.4rem;
+      list-style: none;
+      align-items: center;
+    }
+    .nav-links a {
+      color: var(--muted);
+      text-decoration: none;
+      font-size: 0.8rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover,
+    .nav-links a.nav-active { color: var(--accent); }
+
+    /* ── THEME TOGGLE ── */
+    .theme-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+    .toggle-pill {
+      width: 52px; height: 28px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      position: relative;
+      transition: background 0.3s, border-color 0.3s;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 6px;
+    }
+    body.light-mode .toggle-pill {
+      border-color: var(--accent);
+      background: #FBE9E0;
+    }
+    .toggle-pill svg {
+      width: 11px; height: 11px;
+      fill: none;
+      stroke-width: 1.8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      flex-shrink: 0;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      stroke: var(--muted);
+    }
+    .toggle-pill .icon-moon { left: 13px; }
+    .toggle-pill .icon-sun { left: 39px; }
+    /* el ícono que queda debajo del círculo va en claro para que se lea */
+    .toggle-pill .icon-moon { stroke: #fff; }
+    body.light-mode .toggle-pill .icon-moon { stroke: var(--muted); }
+    body.light-mode .toggle-pill .icon-sun { stroke: #fff; }
+    .toggle-knob {
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 20px; height: 20px;
+      border-radius: 50%;
+      background: var(--accent);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+    body.light-mode .toggle-knob { transform: translateX(26px); }
+
+    /* ── HAMBURGER ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      justify-content: center;
+      gap: 5px;
+      width: 44px;
+      height: 44px;
+      align-items: center;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      z-index: 320;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 26px;
+      height: 1.5px;
+      background: var(--text);
+      transition: transform 0.3s ease, opacity 0.2s ease;
+      transform-origin: center;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(6.5px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-6.5px) rotate(-45deg); }
+
+    /* ── SECTION SHELL ── */
+    section { position: relative; overflow: hidden; }
+    .section-label {
+      font-size: 0.7rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.6rem;
+    }
+    .section-title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(1.9rem, 3.4vw, 2.9rem);
+      letter-spacing: -0.025em;
+      line-height: 1;
+    }
+
+    /* ── HERO ── */
+    #hero {
+      min-height: 58svh;
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 8rem var(--pad-x) 4rem;
+    }
+    .hero-inner { position: relative; z-index: 2; }
+    .hero-name {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(2.6rem, 5.6vw, 4.8rem);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+    }
+    .hero-name em {
+      font-style: normal;
+      color: inherit;
+    }
+    .hero-eyebrow {
+      font-size: 0.75rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-top: 1.2rem;
+    }
+    .hero-cta {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      margin-top: 2.4rem;
+      padding: 1rem 2rem;
+      min-height: 48px;
+      background: var(--accent);
+      color: var(--cta-text);
+      text-decoration: none;
+      font-size: 0.8rem;
+      font-weight: 500;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      align-self: flex-start;
+      transition: background 0.2s, transform 0.15s;
+    }
+    .hero-cta:hover { background: var(--accent-2); color: var(--cta-text); transform: translateY(-2px); }
+
+    /* ── SERVICIOS ── */
+    #servicios {
+      padding: 7rem var(--pad-x);
+      border-top: 1px solid var(--border);
+    }
+    .servicios-grid {
+      display: grid;
+      /* 6 especialidades ÷ 3 columnas = 2 filas completas, sin huecos */
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      margin-top: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+    .servicio-card {
+      background: transparent;
+      border: 1px solid var(--border);
+      padding: 2.4rem 2rem;
+      display: flex;
+      flex-direction: column;
+      transition: background 0.2s, border-color 0.2s;
+      position: relative;
+      overflow: hidden;
+    }
+    .servicio-card::before {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0;
+      width: 0; height: 2px;
+      background: var(--accent);
+      transition: width 0.35s ease;
+    }
+    .servicio-card:hover::before { width: 100%; }
+    .servicio-card:hover { background: var(--surface); border-color: var(--accent); }
+    .servicio-nombre {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+      min-height: 2.5em;
+      margin-bottom: 0.7rem;
+    }
+    .servicio-desc {
+      font-size: 0.85rem;
+      color: var(--muted);
+      line-height: 1.7;
+      text-wrap: pretty;
+    }
+
+    /* ── PROYECTOS ── */
+    #proyectos {
+      padding: 7rem var(--pad-x);
+      border-top: 1px solid var(--border);
+    }
+    .proyectos-header {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+      margin-bottom: 3rem;
+      position: relative;
+      z-index: 2;
+    }
+    .filtros { display: flex; gap: 0.6rem; flex-wrap: wrap; }
+    .filtro-btn {
+      padding: 0.6rem 1.1rem;
+      min-height: 44px;
+      background: transparent;
+      border: 1px solid var(--border);
+      color: var(--muted);
+      font-family: 'Inter', sans-serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: background 0.2s, border-color 0.2s, color 0.2s;
+    }
+    .filtro-btn:hover { border-color: var(--text); color: var(--text); }
+    .filtro-btn.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #fff;
+    }
+
+    .proyectos-grid {
+      display: grid;
+      grid-template-columns: repeat(12, 1fr);
+      grid-auto-rows: auto;
+      gap: 1.2rem;
+      position: relative;
+      z-index: 2;
+    }
+    /* Ancho de cada tarjeta — se define por clase, no por nth-child,
+       así el mosaico no se rompe al filtrar. */
+    .span-4 { grid-column: span 4; }
+    .span-5 { grid-column: span 5; }
+    .span-6 { grid-column: span 6; }
+    .span-7 { grid-column: span 7; }
+    .span-8 { grid-column: span 8; }
+    .span-12 { grid-column: span 12; }
+    /* Carruseles de placas, en formato historia 9:16 */
+    .carruseles {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.2rem;
+      max-width: 1000px;
+      width: 100%;
+      justify-self: center;
+    }
+    .carruseles[hidden] { display: none; }
+    /* Banners animados: dos en fila, formato ancho */
+    .banners {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      max-width: 1000px;
+      width: 100%;
+      justify-self: center;
+    }
+    .banners[hidden] { display: none; }
+    .banner .proyecto-img { aspect-ratio: 1138 / 196; }
+    /* la tarjeta banner es muy baja: la etiqueta va en una sola línea */
+    .banner .proyecto-overlay {
+      flex-direction: column;
+      justify-content: center;
+      align-items: flex-start;
+      gap: 0.15rem;
+      padding: 0 1rem;
+      background: linear-gradient(to right, var(--overlay) 0%, color-mix(in srgb, var(--overlay) 55%, transparent) 70%, transparent 100%);
+    }
+    .banner .proyecto-cat {
+      margin-bottom: 0;
+      font-size: 0.58rem;
+      letter-spacing: 0.16em;
+      white-space: nowrap;
+    }
+    .banner .proyecto-nombre { font-size: 0.9rem; white-space: nowrap; }
+    .carruseles.cuadrados { grid-template-columns: repeat(3, 1fr); max-width: 1000px; width: 100%;
+      justify-self: center; }
+    .carrusel.cuadrado { aspect-ratio: 1 / 1; }
+    .carrusel {
+      position: relative;
+      aspect-ratio: 9 / 16;
+      overflow: hidden;
+      background: var(--surface);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      display: block;
+      width: 100%;
+      color: inherit;
+      font: inherit;
+    }
+    .carrusel .proyecto-img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      aspect-ratio: auto;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+    }
+    .carrusel .proyecto-img.activa { opacity: 1; }
+    .carrusel:hover .proyecto-img,
+    .carrusel:focus-visible .proyecto-img { transform: none; filter: grayscale(0%); }
+    .carrusel-flecha {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      z-index: 5;
+      width: 30px; height: 44px;
+      display: grid; place-items: center;
+      background: rgba(14,14,14,0.5);
+      backdrop-filter: blur(4px);
+      -webkit-backdrop-filter: blur(4px);
+      border: none;
+      padding: 0;
+      cursor: pointer;
+      color: #fff;
+      opacity: 0;
+      transition: opacity 0.25s ease, background 0.2s;
+    }
+    .carrusel-flecha:hover { background: rgba(14,14,14,0.8); }
+    .carrusel-flecha.izq { left: 0; }
+    .carrusel-flecha.der { right: 0; }
+    .carrusel:hover .carrusel-flecha,
+    .carrusel:focus-within .carrusel-flecha { opacity: 1; }
+    @media (hover: none) {
+      .carrusel-flecha { opacity: 1; }
+    }
+    .carrusel-puntos {
+      position: absolute;
+      bottom: 0.9rem; left: 0; right: 0;
+      z-index: 4;
+      display: flex;
+      justify-content: center;
+      gap: 6px;
+      pointer-events: none;
+    }
+    .carrusel-punto {
+      width: 5px; height: 5px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.35);
+      transition: background 0.3s;
+    }
+    .carrusel-punto.activo { background: #fff; }
+
+    .proyecto-card {
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      background: var(--surface);
+      border: none;
+      padding: 0;
+      display: block;
+      width: 100%;
+      text-align: left;
+      color: inherit;
+      font: inherit;
+      transition: opacity 0.35s ease;
+    }
+    .proyecto-card[hidden] { display: none; }
+    .proyecto-card.is-filtering,
+    .carruseles.is-filtering,
+    .logofolio.is-filtering,
+    .banners.is-filtering,
+    .mailings.is-filtering { opacity: 0; }
+    .carruseles, .banners, .logofolio, .mailings { transition: opacity 0.35s ease; }
+
+    /* Email marketing: ventanas que scrollean la pieza como un cliente de correo */
+    .mailings {
+      grid-column: 1 / -1;
+      max-width: 1000px;
+      width: 100%;
+      justify-self: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1.4rem;
+    }
+    .mailings[hidden] { display: none; }
+    .mailings-label {
+      grid-column: 1 / -1;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+    .mail-col {
+      position: relative;
+      aspect-ratio: 3 / 4;
+      overflow: hidden;
+      border: 1px solid var(--line);
+      background: var(--surface);
+      cursor: pointer;
+      padding: 0;
+      display: block;
+      width: 100%;
+      color: inherit;
+      font: inherit;
+      text-align: left;
+    }
+    .mail-item {
+      position: absolute;
+      inset: 0;
+      overflow: hidden;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      pointer-events: none;
+    }
+    .mail-item.activa { opacity: 1; }
+    .mail-item img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%;
+      height: auto;
+      display: block;
+      will-change: transform;
+    }
+    .mail-nombre {
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      z-index: 3;
+      padding: 1.6rem 1rem 0.75rem;
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: #fff;
+      background: linear-gradient(to top, rgba(14,14,14,0.92), transparent);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      pointer-events: none;
+    }
+    .mail-col:hover .mail-nombre,
+    .mail-col:focus-visible .mail-nombre { opacity: 1; }
+    .mail-col:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+    @media (hover: none) { .mail-nombre { opacity: 1; } }
+
+    /* Visor de mailing: la misma ventana, en grande */
+    .maillb {
+      position: fixed;
+      inset: 0;
+      z-index: 400;
+      background: var(--overlay);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.25s ease;
+    }
+    .maillb.open { opacity: 1; }
+    .maillb[hidden] { display: none; }
+    .maillb-top {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      padding: 0.9rem 1.4rem;
+      border-bottom: 1px solid var(--line);
+    }
+    .maillb-title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: var(--fg);
+    }
+    .maillb-cat {
+      font-size: 0.58rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .maillb-acciones { display: flex; gap: 0.5rem; }
+    .maillb-btn {
+      min-height: 40px;
+      padding: 0 0.9rem;
+      background: none;
+      border: 1px solid var(--line);
+      color: var(--fg);
+      font: inherit;
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      cursor: pointer;
+      transition: border-color 0.2s ease, color 0.2s ease;
+    }
+    .maillb-btn:hover { border-color: var(--fg); }
+    .maillb-scroll {
+      flex: 1;
+      width: 100%;
+      overflow-y: auto;
+      overflow-x: hidden;
+      display: flex;
+      justify-content: center;
+      padding: 1.4rem 1rem 2.4rem;
+      scrollbar-width: thin;
+    }
+    .maillb-scroll img {
+      width: min(560px, 100%);
+      height: auto;
+      display: block;
+      align-self: flex-start;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.45);
+    }
+    @media (max-width: 760px) {
+      .maillb-top { padding: 0.8rem 1.1rem; }
+      .maillb-title { font-size: 0.85rem; }
+      .maillb-scroll { padding: 0.8rem 0.6rem 1.6rem; }
+      .maillb-scroll img { width: 100%; }
+    }
+
+    /* Logofolio: dos columnas que rotan logos sobre el fondo de la página */
+    .logofolio {
+      grid-column: 1 / -1;
+      max-width: 1000px;
+      width: 100%;
+      justify-self: center;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      margin-top: 1.4rem;
+    }
+    .logofolio[hidden] { display: none; }
+    .bloque-label {
+      grid-column: 1 / -1;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+    .logofolio-label {
+      grid-column: 1 / -1;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.7rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-bottom: 0.2rem;
+    }
+    .logo-col {
+      position: relative;
+      aspect-ratio: 16 / 9;
+      display: block;
+      width: 100%;
+      background: none;
+      border: 1px solid var(--line);
+      padding: 0;
+      cursor: default;
+      color: inherit;
+      font: inherit;
+    }
+    .logo-item {
+      position: absolute;
+      inset: 0;
+      display: grid;
+      place-items: center;
+      gap: 0.9rem;
+      grid-template-rows: minmax(0, 1fr) auto;
+      padding: 12% 18% 8%;
+      opacity: 0;
+      transition: opacity 0.7s ease;
+      pointer-events: none;
+    }
+    .logo-item.activa { opacity: 1; }
+    .logo-item img {
+      max-width: 100%;
+      max-height: 100%;
+      width: auto;
+      height: auto;
+      min-width: 0;
+      min-height: 0;
+      object-fit: contain;
+      align-self: center;
+    }
+    body.light-mode .logo-item img { filter: invert(1); }
+    .logo-nombre {
+      font-size: 0.62rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--muted);
+      opacity: 0;
+      transition: opacity 0.3s ease;
+      text-align: center;
+    }
+    .logo-col:hover .logo-item.activa .logo-nombre { opacity: 1; }
+    @media (hover: none) {
+      .logo-item.activa .logo-nombre { opacity: 1; }
+    }
+
+    .proyecto-img {
+      width: 100%;
+      height: auto;
+      aspect-ratio: 4/3;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(20%);
+      transition: filter 0.4s;
+      background: var(--surface);
+    }
+    .proyecto-card:hover .proyecto-img,
+    .proyecto-card:focus-visible .proyecto-img { filter: grayscale(0%); }
+    .placeholder-img {
+      width: 100%; aspect-ratio: 4/3;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      text-align: center;
+      padding: 1rem;
+      transition: transform 0.5s;
+    }
+
+
+    .proyecto-overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(to top, var(--overlay) 0%, transparent 55%);
+      display: flex; flex-direction: column; justify-content: flex-end;
+      padding: 1.6rem;
+      opacity: 0;
+      transition: opacity 0.3s;
+    }
+    .proyecto-card:hover .proyecto-overlay,
+    .proyecto-card:focus-visible .proyecto-overlay { opacity: 1; }
+    .proyecto-cat {
+      font-size: 0.65rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 0.3rem;
+    }
+    .proyecto-nombre {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.2rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+    .proyecto-chip {
+      position: absolute;
+      top: 0; left: 0;
+      z-index: 3;
+      background: var(--accent);
+      color: #fff;
+      font-size: 0.6rem;
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      padding: 0.35rem 0.7rem;
+    }
+    .proyecto-count {
+      position: absolute;
+      top: 0.8rem; right: 0.8rem;
+      z-index: 3;
+      background: var(--overlay);
+      color: var(--text);
+      font-size: 0.62rem;
+      letter-spacing: 0.14em;
+      padding: 0.3rem 0.55rem;
+    }
+    .sin-resultados {
+      grid-column: 1 / -1;
+      color: var(--muted);
+      font-size: 0.85rem;
+      letter-spacing: 0.08em;
+      padding: 2rem 0;
+    }
+
+    /* Editoriales en PDF: el horizontal arriba a lo ancho, dos verticales debajo.
+       Cada tarjeta usa el aspect-ratio real del PDF, así la página entra justa y sin recorte. */
+    .editoriales {
+      grid-column: 1 / -1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1rem;
+      max-width: 760px;
+      width: 100%;
+      justify-self: center;
+    }
+    .editoriales[hidden] { display: none; }
+    .editoriales.is-filtering { opacity: 0; }
+    .editoriales { transition: opacity 0.35s ease; }
+    .ed-ancho { grid-column: 1 / -1; }
+    .pdf-card {
+      position: relative;
+      overflow: hidden;
+      padding: 0;
+      background: var(--surface);
+      display: block;
+    }
+    .pdf-card canvas {
+      position: absolute;
+      inset: 0;
+      width: 100%; height: 100%;
+      object-fit: contain;
+      display: block;
+      background: #fff;
+      opacity: 0;
+      filter: grayscale(20%);
+      transition: opacity 0.7s ease, filter 0.4s;
+    }
+    .pdf-card canvas.activa { opacity: 1; }
+    /* en táctil no hay hover: las páginas van siempre a color */
+    @media (hover: none) {
+      .pdf-card canvas { filter: none; }
+    }
+    /* recorta la línea blanca del borde inferior del PDF */
+    .pdf-card.ed-recorte canvas { transform: scale(1.01); transform-origin: 50% 0; }
+    .pdf-card .proyecto-overlay { z-index: 3; }
+    .pdf-card:hover canvas, .pdf-card:focus-visible canvas { filter: grayscale(0%); }
+    .pdf-card:hover .carrusel-flecha,
+    .pdf-card:focus-within .carrusel-flecha { opacity: 1; }
+    .pdf-card .pdf-loading {
+      position: absolute; inset: 0;
+      display: grid; place-items: center;
+      font-family: var(--display); font-weight: 700;
+      font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    /* ── VISOR PDF (revista digital) ── */
+    .pdfv {
+      position: fixed; inset: 0;
+      z-index: 600;
+      background: color-mix(in srgb, var(--bg) 97%, transparent);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      display: none;
+      flex-direction: column;
+    }
+    .pdfv.open { display: flex; }
+    .pdfv-top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .pdfv-meta { min-width: 0; }
+    .pdfv-cat {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    .pdfv-title {
+      font-family: var(--display); font-weight: 700;
+      font-size: 1.2rem; letter-spacing: -0.02em; line-height: 1.15;
+    }
+    .pdfv-tools { display: flex; align-items: center; gap: 0.6rem; flex-shrink: 0; }
+    .pdfv-btn {
+      background: none; border: 1px solid var(--border); color: var(--text);
+      height: 44px; min-width: 44px; padding: 0 0.85rem;
+      display: grid; place-items: center;
+      cursor: pointer; text-decoration: none;
+      font-family: var(--display); font-weight: 700;
+      font-size: 0.7rem; letter-spacing: 0.1em; text-transform: uppercase;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .pdfv-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .pdfv-btn[aria-pressed="true"] { border-color: var(--accent); color: var(--accent); }
+
+    .pdfv-stage {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      min-height: 0;
+      position: relative;
+    }
+    .pdfv-spread {
+      flex: 1;
+      height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      gap: 2px;
+      min-width: 0;
+    }
+    .pdfv-spread canvas {
+      display: block;
+      max-width: 100%; max-height: 100%;
+      background: #fff;
+      box-shadow: 0 18px 50px rgba(0,0,0,0.35);
+    }
+    .pdfv-msg {
+      position: absolute;
+      font-family: var(--display); font-weight: 700;
+      font-size: 0.78rem; letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--muted);
+      border: 1px dashed var(--border); background: var(--surface);
+      padding: 3rem 2.5rem; text-align: center; max-width: 26rem;
+    }
+    .pdfv-arrow {
+      background: none; border: 1px solid var(--border); color: var(--text);
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      cursor: pointer; flex-shrink: 0;
+      transition: border-color 0.2s, color 0.2s, opacity 0.2s;
+    }
+    .pdfv-arrow:hover { border-color: var(--accent); color: var(--accent); }
+    .pdfv-arrow:disabled { opacity: 0.25; cursor: default; }
+    .pdfv-bottom {
+      flex-shrink: 0;
+      padding: 0.9rem 2rem 1.4rem;
+      border-top: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center; gap: 1rem;
+      font-family: var(--display); font-weight: 700;
+      font-size: 0.72rem; letter-spacing: 0.14em;
+      color: var(--muted);
+    }
+    @media (max-width: 760px) {
+      .pdfv-top { padding: 0.85rem 1.1rem; }
+      .pdfv-stage { padding: 0.6rem 0.5rem; gap: 0; }
+      .pdfv-bottom { padding: 0.7rem 1.1rem 1rem; }
+      .pdfv-btn span { display: none; }
+      .pdfv-title { font-size: 1rem; }
+      /* las flechas se superponen a la página: así el pliego usa todo el ancho */
+      .pdfv-arrow {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 4;
+        background: color-mix(in srgb, var(--bg) 78%, transparent);
+        backdrop-filter: blur(6px);
+      }
+      #pdfvPrev { left: 0.35rem; }
+      #pdfvNext { right: 0.35rem; }
+      .pdfv-arrow:disabled { opacity: 0; pointer-events: none; }
+      .pdfv-spread { width: 100%; }
+    }
+
+    /* ── LIGHTBOX ── */
+    .lb {
+      position: fixed; inset: 0;
+      z-index: 500;
+      background: color-mix(in srgb, var(--bg) 96%, transparent);
+      display: none;
+      flex-direction: column;
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+    }
+    .lb.open { display: flex; }
+    .lb-top {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem;
+      padding: 1.2rem 2rem;
+      border-bottom: 1px solid var(--border);
+      flex-shrink: 0;
+    }
+    .lb-meta { min-width: 0; }
+    .lb-cat {
+      font-size: 0.65rem; letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--accent);
+    }
+    .lb-title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.2rem; letter-spacing: -0.02em; line-height: 1.15;
+    }
+    .lb-close {
+      background: none; border: 1px solid var(--border);
+      color: var(--text);
+      width: 44px; height: 44px;
+      display: grid; place-items: center;
+      cursor: pointer; flex-shrink: 0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lb-close:hover { border-color: var(--accent); color: var(--accent); }
+
+    .lb-stage {
+      flex: 1;
+      display: flex; align-items: center; justify-content: center;
+      gap: 1rem;
+      padding: 1.5rem 2rem;
+      min-height: 0;
+      position: relative;
+    }
+    .lb-figure {
+      flex: 1;
+      height: 100%;
+      display: flex; align-items: center; justify-content: center;
+      min-width: 0;
+    }
+    .lb-img {
+      max-width: 100%;
+      max-height: 100%;
+      object-fit: contain;
+      display: block;
+    }
+    .lb-fallback {
+      position: absolute;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      border: 1px dashed var(--border);
+      background: var(--surface);
+      padding: 4rem 3rem;
+      text-align: center;
+    }
+    .lb-arrow {
+      background: none;
+      border: 1px solid var(--border);
+      color: var(--text);
+      width: 48px; height: 48px;
+      display: grid; place-items: center;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lb-arrow:hover { border-color: var(--accent); color: var(--accent); }
+    .lb-arrow[hidden] { display: none; }
+
+    .lb-bottom {
+      flex-shrink: 0;
+      border-top: 1px solid var(--border);
+      padding: 1rem 2rem 1.6rem;
+      display: flex; flex-direction: column; gap: 1.2rem;
+    }
+    .lb-thumbs { display: flex; gap: 6px; overflow-x: auto; padding-bottom: 4px; }
+    .lb-thumbs::-webkit-scrollbar { height: 4px; }
+    .lb-thumbs::-webkit-scrollbar-thumb { background: var(--border); }
+    .lb-thumb {
+      width: 72px; height: 54px;
+      object-fit: cover;
+      opacity: 0.5;
+      cursor: pointer;
+      border: 1px solid transparent;
+      background: var(--surface);
+      flex-shrink: 0;
+      padding: 0;
+      transition: opacity 0.2s, border-color 0.2s;
+    }
+    .lb-thumb:hover { opacity: 1; }
+    .lb-thumb.active { opacity: 1; border-color: var(--accent); }
+
+    .lb-related { display: flex; flex-direction: column; gap: 0.6rem; }
+    .lb-related-label {
+      font-size: 0.62rem; letter-spacing: 0.24em; text-transform: uppercase;
+      color: var(--muted);
+    }
+    .lb-related-row { display: flex; gap: 0.6rem; overflow-x: auto; padding-bottom: 4px; }
+    .lb-related-item {
+      flex-shrink: 0;
+      width: 132px;
+      background: none; border: 1px solid var(--border);
+      padding: 0; cursor: pointer;
+      text-align: left;
+      color: var(--muted);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .lb-related-item:hover { border-color: var(--accent); color: var(--text); }
+    .lb-related-item img {
+      width: 100%; height: 74px; object-fit: cover; display: block;
+      background: var(--surface);
+    }
+    .lb-related-item span {
+      display: block;
+      padding: 0.45rem 0.6rem;
+      font-size: 0.68rem;
+      letter-spacing: 0.08em;
+      white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+    }
+
+    /* ── SOBRE MÍ ── */
+    #sobre-mi { border-top: 1px solid var(--border); }
+    .about-header { margin-bottom: 3rem; position: relative; z-index: 2; }
+    .about-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 380px);
+      gap: 5rem;
+      align-items: start;
+      padding: 7rem var(--pad-x);
+      position: relative;
+      z-index: 2;
+    }
+    .about-img-wrap { position: relative; width: 220px; }
+    .about-img {
+      width: 220px; height: 280px;
+      object-fit: cover;
+      display: block;
+      filter: grayscale(40%);
+      position: relative;
+      z-index: 1;
+    }
+    .placeholder-portrait {
+      width: 220px; height: 280px;
+      display: flex; align-items: center; justify-content: center;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 0.72rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      background: var(--surface);
+      border: 1px dashed var(--border);
+      text-align: center;
+      padding: 1rem;
+      position: relative;
+      z-index: 1;
+    }
+    .about-accent-block {
+      position: absolute;
+      bottom: -1.5rem; right: -1.5rem;
+      width: 60%; height: 200px;
+      border: 2px solid var(--accent);
+      z-index: 0;
+    }
+    .about-text {
+      color: var(--muted);
+      font-size: 0.95rem;
+      line-height: 1.8;
+      margin-bottom: 1.4rem;
+      max-width: 62ch;
+      text-wrap: pretty;
+    }
+    .about-skills { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 2rem; }
+    .skill-tag {
+      padding: 0.35rem 0.9rem;
+      border: 1px solid var(--border);
+      font-size: 0.72rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .nav-contacto { display: none; }
+    @media (max-width: 900px) { .nav-contacto { display: list-item; } }
+
+    /* ── CONTACTO ── */
+    #contacto {
+      padding: 7rem var(--pad-x);
+      border-top: 1px solid var(--border);
+    }
+    .about-body #contacto { padding: 0; border-top: 0; }
+    .contacto-inner { max-width: 640px; position: relative; z-index: 2; }
+    .contacto-title {
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: clamp(1.9rem, 3.4vw, 3.2rem);
+      letter-spacing: -0.03em;
+      line-height: 1.05;
+      margin: 1rem 0 1.2rem;
+    }
+    .contacto-title span { color: var(--accent); }
+    .contacto-invita {
+      font-family: var(--display);
+      font-weight: 500;
+      font-size: 1.7rem;
+      letter-spacing: 0.01em;
+      color: var(--accent);
+      margin-bottom: 1.1rem;
+    }
+    .contacto-email {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.7rem;
+      font-family: var(--display);
+      font-weight: 700;
+      font-size: 1.3rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 0.2rem;
+      transition: color 0.2s;
+    }
+    .contacto-email:hover { color: var(--accent); }
+
+    /* ── FOOTER ── */
+    footer {
+      padding: 2rem var(--pad-x);
+      border-top: 1px solid var(--border);
+      display: flex; justify-content: space-between; align-items: center;
+      gap: 1rem;
+      font-size: 0.72rem;
+      color: var(--muted);
+      letter-spacing: 0.08em;
+    }
+
+    /* ── REVEAL ── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
+      will-change: opacity, transform;
+    }
+    .reveal.visible { opacity: 1; transform: none; will-change: auto; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav, #servicios, #proyectos, #contacto, footer { padding-left: 2rem; padding-right: 2rem; }
+      .about-body { grid-template-columns: minmax(0, 1fr); padding-left: 2rem; padding-right: 2rem; gap: 3rem; }
+      #hero { padding-left: 2rem; padding-right: 2rem; }
+      .nav-right { gap: 1.6rem; }
+      .nav-links { gap: 1.6rem; }
+      /* 6 ÷ 2 columnas = 3 filas completas */
+      .servicios-grid { grid-template-columns: repeat(2, 1fr); gap: 1rem; }
+      .servicio-desc { min-height: 0; }
+      .span-4, .span-5, .span-7, .span-8 { grid-column: span 6; }
+      .carruseles { max-width: none; }
+      .carruseles.cuadrados { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    @media (max-width: 768px) {
+      nav { padding: 0 1.5rem; }
+      .nav-logo { font-size: 1.15rem; }
+      .nav-toggle { display: flex; }
+      .nav-right { gap: 0.4rem; }
+
+      .nav-links {
+        position: fixed;
+        inset: 0;
+        height: 100dvh;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.4rem;
+        background: var(--menu-bg);
+        opacity: 0;
+        pointer-events: none;
+        transition: opacity 0.3s ease;
+        z-index: 310;
+      }
+      .nav-links.open { opacity: 1; pointer-events: auto; }
+      .nav-links a {
+        font-size: 1.7rem;
+        font-family: var(--display);
+      font-weight: 700;
+        letter-spacing: -0.02em;
+        color: var(--text);
+        position: relative;
+        padding-bottom: 0.3rem;
+      }
+      .nav-links a::after {
+        content: '';
+        position: absolute;
+        left: 0; bottom: 0;
+        width: 0; height: 2px;
+        background: var(--accent);
+        transition: width 0.25s ease;
+      }
+      .nav-links a.nav-active::after { width: 100%; }
+
+      #hero { padding: 4.5rem 1.5rem 2.5rem; min-height: 44svh; }
+      .hero-name { font-size: clamp(2.3rem, 10.5vw, 3.4rem); }
+      .hero-eyebrow { font-size: 0.65rem; letter-spacing: 0.18em; }
+
+      #servicios, #proyectos, #contacto { padding: 4rem 1.5rem; }
+      .about-header { margin-bottom: 1.6rem; }
+      .about-body { grid-template-columns: 1fr; gap: 2.5rem; padding: 4rem 1.5rem; }
+      .about-img-wrap { width: 140px; }
+      .about-img, .placeholder-portrait { width: 140px; height: 176px; }
+      .about-accent-block { display: none; }
+      footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+
+      .servicios-grid { grid-template-columns: 1fr; }
+
+      .hero-cta { width: 100%; justify-content: center; margin-top: 2rem; align-self: stretch; }
+      .servicio-card { padding: 1.8rem 1.4rem; }
+      .servicio-nombre { min-height: 0; }
+      .section-title { font-size: clamp(1.7rem, 6.5vw, 2.3rem); }
+      .proyectos-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
+      .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: 1 / -1; }
+      .carruseles, .carruseles.cuadrados { gap: 0.8rem; grid-template-columns: repeat(2, 1fr); }
+      .carruseles.pop { grid-template-columns: repeat(2, 1fr); }
+      /* editoriales: el horizontal a lo ancho, los dos verticales en dos columnas */
+      .editoriales { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; max-width: none; }
+      .ed-ancho { grid-column: 1 / -1; }
+      .logofolio { gap: 0.8rem; margin-top: 0.6rem; }
+      .logo-col { aspect-ratio: 1 / 1; }
+      .logofolio { grid-template-columns: 1fr 1fr; }
+      .mailings { gap: 0.8rem; margin-top: 0.6rem; }
+      .mail-col { aspect-ratio: 2 / 3; }
+      .banners { grid-template-columns: 1fr; gap: 0.8rem; }
+      /* sin capa oscura ni texto sobre la imagen: la etiqueta va debajo, fija en dos líneas */
+      .proyectos-grid { row-gap: 2rem; }
+      .proyecto-card { overflow: visible; margin-bottom: 3rem; }
+      .proyecto-overlay {
+        opacity: 1;
+        position: absolute;
+        top: 100%; left: 0; right: 0; bottom: auto;
+        height: 3rem;
+        background: none;
+        padding: 0.55rem 0 0;
+        gap: 0.1rem;
+        justify-content: flex-start;
+      }
+      .proyecto-cat {
+        font-size: 0.56rem;
+        letter-spacing: 0.18em;
+        margin-bottom: 0;
+      }
+      .proyecto-nombre {
+        font-size: 0.9rem;
+        line-height: 1.35;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        max-width: 100%;
+      }
+      .banner .proyecto-overlay {
+        padding: 0.55rem 0 0;
+        background: none;
+        justify-content: flex-start;
+      }
+      .banner .proyecto-nombre { font-size: 0.9rem; }
+      .banner .proyecto-cat { font-size: 0.56rem; letter-spacing: 0.18em; }
+      .ed-recorte canvas { clip-path: inset(0 0 1% 0); }
+      /* en dos columnas los rótulos son angostos: tipografía más chica y nombre en dos líneas */
+      .editoriales .pdf-card { margin-bottom: 4.2rem; }
+      .editoriales .pdf-card .proyecto-overlay { height: 4rem; }
+      .editoriales .pdf-card .proyecto-cat { font-size: 0.48rem; letter-spacing: 0.12em; line-height: 1.4; }
+      .editoriales .pdf-card .proyecto-nombre {
+        font-size: 0.78rem;
+        line-height: 1.25;
+        white-space: normal;
+        text-overflow: clip;
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+      }
+      .editoriales .ed-ancho { margin-bottom: 3rem; }
+      .editoriales .ed-ancho .proyecto-overlay { height: 3rem; }
+      .editoriales .ed-ancho .proyecto-cat { font-size: 0.56rem; letter-spacing: 0.18em; }
+      .editoriales .ed-ancho .proyecto-nombre { font-size: 0.9rem; -webkit-line-clamp: 1; }
+
+      .contacto-title { font-size: clamp(1.7rem, 7vw, 2.4rem); }
+      .contacto-email { font-size: 1rem; word-break: break-word; }
+
+      .filtros {
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding-bottom: 0.5rem;
+        margin: 0 -1.5rem;
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+        scrollbar-width: none;
+      }
+      .filtros::-webkit-scrollbar { display: none; }
+      .filtro-btn { white-space: nowrap; flex-shrink: 0; }
+
+      .lb-top { padding: 1rem 1.2rem; }
+      .lb-stage { padding: 1rem; gap: 0.5rem; }
+      .lb-arrow { width: 44px; height: 44px; }
+      .lb-bottom { padding: 0.8rem 1.2rem 1.2rem; gap: 1rem; }
+      .lb-related-item { width: 112px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; animation: none !important; }
+      .reveal { opacity: 1; transform: none; }
+    }
+  </style>
+</head>
+<body class="light-mode">
+<script>
+  /* evita el destello: aplica el tema guardado antes de pintar */
+  try { if (localStorage.getItem('theme') === 'dark') document.body.classList.remove('light-mode'); } catch (e) {}
+</script>
+
+<a class="skip-link" href="#proyectos">Ir a proyectos</a>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#hero">Tomás Manitta<span>.</span></a>
+  <div class="nav-right">
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#servicios">Lo que hago</a></li>
+      <li><a href="#proyectos">Proyectos</a></li>
+      <li><a href="#sobre-mi">Sobre mí</a></li>
+      <li class="nav-contacto"><a href="#contacto">Contacto</a></li>
+    </ul>
+    <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo claro/oscuro" aria-pressed="false">
+      <span class="toggle-pill">
+        <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        <svg class="icon-sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+        <span class="toggle-knob"></span>
+      </span>
+    </button>
+    <button class="nav-toggle" id="navToggle" aria-label="Abrir menú" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-inner">
+    <h1 class="hero-name">Tomás<br/><em>Manitta</em></h1>
+    <p class="hero-eyebrow">Diseñador Gráfico · Córdoba, Argentina</p>
+    <a class="hero-cta" href="#proyectos">Ver proyectos</a>
+  </div>
+</section>
+
+<!-- SERVICIOS -->
+<section id="servicios" class="reveal">
+  <p class="section-label">Especialidades</p>
+  <h2 class="section-title">Lo que hago</h2>
+  <div class="servicios-grid">
+    <div class="servicio-card">
+      <h3 class="servicio-nombre">Branding</h3>
+      <p class="servicio-desc">Identidad visual completa: logo, sistema de marca, paleta, tipografía y manual de uso.</p>
+    </div>
+    <div class="servicio-card">
+      <h3 class="servicio-nombre">Diseño Editorial</h3>
+      <p class="servicio-desc">Catálogos, revistas, libros y material impreso, con la maquetación y los ajustes de preprensa listos para imprenta.</p>
+    </div>
+    <div class="servicio-card">
+      <h3 class="servicio-nombre">Placas Comerciales</h3>
+      <p class="servicio-desc">Piezas para redes sociales y campañas, adaptadas a cada formato y a la línea gráfica de la marca.</p>
+    </div>
+    <div class="servicio-card">
+      <h3 class="servicio-nombre">Stands &amp; Eventos</h3>
+      <p class="servicio-desc">Stands, ploteos y ambientación para ferias y exposiciones, del concepto a los planos de armado.</p>
+    </div>
+    <div class="servicio-card">
+      <h3 class="servicio-nombre">Muebles de Exhibición</h3>
+      <p class="servicio-desc">Mobiliario para punto de venta y espacios comerciales: concepto, materiales y despiece.</p>
+    </div>
+    <div class="servicio-card">
+      <h3 class="servicio-nombre">Email Marketing</h3>
+      <p class="servicio-desc">Newsletters y campañas de email armadas para que se vean bien en cualquier cliente de correo.</p>
+    </div>
+  </div>
+</section>
+
+<!-- PROYECTOS -->
+<section id="proyectos" class="reveal">
+  <div class="proyectos-header">
+    <p class="section-label">Trabajos</p>
+    <h2 class="section-title">Proyectos seleccionados</h2>
+    <div class="filtros" role="group" aria-label="Filtrar proyectos">
+      <button class="filtro-btn active" data-cat="todos">Todos</button>
+      <button class="filtro-btn" data-cat="placas">Placas Comerciales</button>
+      <button class="filtro-btn" data-cat="emkt">Email Marketing</button>
+      <button class="filtro-btn" data-cat="pop">POP</button>
+      <button class="filtro-btn" data-cat="editorial">Editorial</button>
+      <button class="filtro-btn" data-cat="branding">Logos</button>
+      <button class="filtro-btn" data-cat="exhibicion">Exhibición</button>
+    </div>
+  </div>
+
+  <!--
+  ═══════════════════════════════════════════════════════════════
+  CÓMO AGREGAR UN PROYECTO
+  1. Copiá un bloque <button class="proyecto-card"> … </button> completo.
+  2. Pegalo dentro de <div class="proyectos-grid">, donde quieras que aparezca.
+  3. Cambiá:
+     - data-cat   → branding | editorial | placas | exhibicion | pop
+     - data-nombre → el título que se muestra
+     - data-imgs   → todas las imágenes del proyecto separadas por coma
+                     (la primera es la portada)
+     - class="span-X" → ancho en la grilla: span-4 (chico), span-5, span-6,
+                        span-7, span-8, span-12 (ancho completo).
+                        Cada fila suma 12.
+  4. Subí las imágenes a la carpeta imagenes/
+  ═══════════════════════════════════════════════════════════════
+  -->
+  <div class="proyectos-grid" id="proyectosGrid">
+
+    <div class="carruseles">
+      <p class="bloque-label">Placas para redes</p>
+
+      <button class="carrusel proyecto-card" data-cat="placas" data-nombre="Fechas especiales — Foxbox Group"
+              data-imgs="imagenes/placas/diadelnino-01.jpg,imagenes/placas/diadelnino-02.jpg,imagenes/placas/diadelnino-03.jpg,imagenes/placas/diadelnino-04.jpg,imagenes/placas/diadelpadre-essence.jpg">
+        <img class="proyecto-img activa" src="imagenes/placas/diadelnino-01-cover.jpg" alt="Día del Niño — Foxbox Group" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/diadelnino-02-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/diadelnino-03-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/diadelnino-04-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/diadelpadre-essence-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">Placas Comerciales</span>
+          <span class="proyecto-nombre">Fechas especiales</span>
+        </span>
+      </button>
+
+      <button class="carrusel proyecto-card" data-cat="placas" data-nombre="Novedades — Foxbox Group"
+              data-imgs="imagenes/placas/nyxia-60.jpg,imagenes/placas/eternal-20.jpg,imagenes/placas/essence-gps.jpg,imagenes/placas/neon-30.jpg,imagenes/placas/ecoflow-river3.jpg">
+        <img class="proyecto-img activa" src="imagenes/placas/nyxia-60-cover.jpg" alt="Nyxia 60 — nuevos parlantes inalámbricos" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/eternal-20-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/essence-gps-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/neon-30-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/ecoflow-river3-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">Placas Comerciales</span>
+          <span class="proyecto-nombre">Novedades</span>
+        </span>
+      </button>
+
+      <button class="carrusel proyecto-card" data-cat="placas" data-nombre="Campañas y ofertas — Foxbox Group"
+              data-imgs="imagenes/placas/ecoflow-glacier.jpg,imagenes/placas/foxbox-pyxis2.jpg,imagenes/placas/haxly-cuotas.jpg,imagenes/placas/genus-cafetera.jpg,imagenes/placas/foxbox-flux20.jpg,imagenes/placas/mega-cargadores.jpg">
+        <img class="proyecto-img activa" src="imagenes/placas/ecoflow-glacier-cover.jpg" alt="EcoFlow Glacier — venta fuera de temporada" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/foxbox-pyxis2-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/haxly-cuotas-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/genus-cafetera-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/foxbox-flux20-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/placas/mega-cargadores-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">Placas Comerciales</span>
+          <span class="proyecto-nombre">Campañas y ofertas</span>
+        </span>
+      </button>
+
+    </div>
+
+    <div class="banners">
+      <p class="bloque-label">Banners animados</p>
+
+      <button class="proyecto-card banner" data-cat="placas" data-nombre="Banner FitRing — Foxbox"
+              data-imgs="imagenes/banners/fitring.webp">
+        <img class="proyecto-img" src="imagenes/banners/fitring.webp" alt="Banner animado FitRing — Foxbox" width="1138" height="196" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">Placas Comerciales</span>
+          <span class="proyecto-nombre">Banner FitRing</span>
+        </span>
+      </button>
+
+      <button class="proyecto-card banner" data-cat="placas" data-nombre="Banner Pixel — Foxbox"
+              data-imgs="imagenes/banners/pixel.webp">
+        <img class="proyecto-img" src="imagenes/banners/pixel.webp" alt="Banner animado Pixel — Foxbox" width="1138" height="196" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">Placas Comerciales</span>
+          <span class="proyecto-nombre">Banner Pixel</span>
+        </span>
+      </button>
+
+    </div>
+
+    <div class="carruseles cuadrados">
+      <p class="bloque-label">Fichas de producto</p>
+
+      <button class="carrusel cuadrado proyecto-card" data-cat="placas" data-nombre="Fichas de producto — Foxbox"
+              data-imgs="imagenes/productos/foxbox-iris-1.jpg,imagenes/productos/foxbox-iris-2.jpg,imagenes/productos/foxbox-xpand-1.jpg,imagenes/productos/foxbox-xpand-2.jpg">
+        <img class="proyecto-img activa" src="imagenes/productos/foxbox-iris-1-cover.jpg" alt="Fichas de producto Foxbox — auriculares IRIS" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/productos/foxbox-iris-2-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/productos/foxbox-xpand-1-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/productos/foxbox-xpand-2-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">Placas Comerciales</span>
+          <span class="proyecto-nombre">Fichas de producto</span>
+        </span>
+      </button>
+
+      <button class="carrusel cuadrado proyecto-card" data-cat="placas" data-nombre="Accesorios — Foxbox Group"
+              data-imgs="imagenes/productos/foxbox-hub.jpg,imagenes/productos/foxbox-infinity.jpg">
+        <img class="proyecto-img activa" src="imagenes/productos/foxbox-hub-cover.jpg" alt="Accesorios Foxbox — hub 6 en 1" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/productos/foxbox-infinity-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">Placas Comerciales</span>
+          <span class="proyecto-nombre">Accesorios</span>
+        </span>
+      </button>
+
+      <button class="carrusel cuadrado proyecto-card" data-cat="placas" data-nombre="Fichas de producto — marcas representadas"
+              data-imgs="imagenes/productos/nikon-z50.jpg,imagenes/productos/jbl-flip6.jpg,imagenes/productos/jbl-go4.jpg,imagenes/productos/alo-moon.jpg">
+        <img class="proyecto-img activa" src="imagenes/productos/nikon-z50-cover.jpg" alt="Marcas representadas — Nikon Z50" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/productos/jbl-flip6-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/productos/jbl-go4-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/productos/alo-moon-cover.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">Placas Comerciales</span>
+          <span class="proyecto-nombre">Fichas de producto</span>
+        </span>
+      </button>
+
+    </div>
+
+    <div class="mailings" data-cat="emkt">
+      <p class="mailings-label">Email Marketing</p>
+
+      <div class="mail-col" role="button" tabindex="0" aria-label="Ver mailing Auriculares Bliss" data-cat="emkt" data-nombre="Auriculares Bliss" data-imgs="imagenes/emkt/bliss.jpg, imagenes/emkt/cyber-monday.jpg, imagenes/emkt/freidora-aeris.jpg">
+        <div class="mail-item activa" data-nombre="Auriculares Bliss"><img src="imagenes/emkt/bliss.jpg" alt="Mailing Auriculares Bliss" decoding="async"/></div>
+        <div class="mail-item" data-nombre="Cyber Monday"><img src="imagenes/emkt/cyber-monday.jpg" alt="Mailing Cyber Monday" decoding="async"/></div>
+        <div class="mail-item" data-nombre="Freidora Aeris"><img src="imagenes/emkt/freidora-aeris.jpg" alt="Mailing Freidora Aeris" decoding="async"/></div>
+        <span class="mail-nombre">Auriculares Bliss</span>
+      </div>
+
+      <div class="mail-col" role="button" tabindex="0" aria-label="Ver mailing Auriculares deportivos" data-cat="emkt" data-nombre="Auriculares deportivos" data-imgs="imagenes/emkt/deportivos.jpg, imagenes/emkt/ecoflow-river-3.jpg, imagenes/emkt/haxly-premium.jpg">
+        <div class="mail-item activa" data-nombre="Auriculares deportivos"><img src="imagenes/emkt/deportivos.jpg" alt="Mailing Auriculares deportivos" decoding="async"/></div>
+        <div class="mail-item" data-nombre="EcoFlow River 3"><img src="imagenes/emkt/ecoflow-river-3.jpg" alt="Mailing EcoFlow River 3" decoding="async"/></div>
+        <div class="mail-item" data-nombre="Haxly Premium"><img src="imagenes/emkt/haxly-premium.jpg" alt="Mailing Haxly Premium" decoding="async"/></div>
+        <span class="mail-nombre">Auriculares deportivos</span>
+      </div>
+    </div>
+
+    <div class="carruseles cuadrados pop">
+      <p class="bloque-label">Material POP</p>
+
+      <button class="carrusel cuadrado proyecto-card" data-cat="pop" data-nombre="POP — Foxbox"
+              data-imgs="imagenes/pop/foxbox-01.jpg,imagenes/pop/foxbox-02.jpg,imagenes/pop/foxbox-03.jpg">
+        <img class="proyecto-img activa" src="imagenes/pop/foxbox-01.jpg" alt="Exhibidor de mostrador Foxbox" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/pop/foxbox-02.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/pop/foxbox-03.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">POP</span>
+          <span class="proyecto-nombre">Foxbox</span>
+        </span>
+      </button>
+
+      <button class="carrusel cuadrado proyecto-card" data-cat="pop" data-nombre="POP — EcoFlow"
+              data-imgs="imagenes/pop/ecoflow-01.jpg,imagenes/pop/ecoflow-02.jpg,imagenes/pop/ecoflow-03.jpg">
+        <img class="proyecto-img activa" src="imagenes/pop/ecoflow-01.jpg" alt="Afiche EcoFlow estaciones de energía portátiles" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/pop/ecoflow-02.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/pop/ecoflow-03.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">POP</span>
+          <span class="proyecto-nombre">EcoFlow</span>
+        </span>
+      </button>
+
+      <button class="carrusel cuadrado proyecto-card" data-cat="pop" data-nombre="POP — Haxly"
+              data-imgs="imagenes/pop/haxly-01.jpg,imagenes/pop/haxly-02.jpg,imagenes/pop/haxly-03.jpg">
+        <img class="proyecto-img activa" src="imagenes/pop/haxly-01.jpg" alt="Exhibidor Haxly films de pantalla" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/pop/haxly-02.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/pop/haxly-03.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">POP</span>
+          <span class="proyecto-nombre">Haxly</span>
+        </span>
+      </button>
+    </div>
+
+    <div class="logofolio" data-cat="branding">
+      <p class="logofolio-label">Logos</p>
+
+      <div class="logo-col">
+        <div class="logo-item activa"><img src="imagenes/logos/antuil.png" alt="Antuil" loading="lazy" decoding="async"/><span class="logo-nombre">Antuil</span></div>
+        <div class="logo-item"><img src="imagenes/logos/jorge-talavera.png" alt="Jorge Talavera" loading="lazy" decoding="async"/><span class="logo-nombre">Jorge Talavera</span></div>
+        <div class="logo-item"><img src="imagenes/logos/clicks.png" alt="Click's" loading="lazy" decoding="async"/><span class="logo-nombre">Click's</span></div>
+        <div class="logo-item"><img src="imagenes/logos/waidy.png" alt="Waidy" loading="lazy" decoding="async"/><span class="logo-nombre">Waidy</span></div>
+        <div class="logo-item"><img src="imagenes/logos/soc.png" alt="SOC" loading="lazy" decoding="async"/><span class="logo-nombre">SOC</span></div>
+      </div>
+
+      <div class="logo-col">
+        <div class="logo-item activa"><img src="imagenes/logos/apolo.png" alt="Apolo" loading="lazy" decoding="async"/><span class="logo-nombre">Apolo</span></div>
+        <div class="logo-item"><img src="imagenes/logos/urca-padel.png" alt="Urca Padel" loading="lazy" decoding="async"/><span class="logo-nombre">Urca Padel</span></div>
+        <div class="logo-item"><img src="imagenes/logos/gh-records.png" alt="GH Records" loading="lazy" decoding="async"/><span class="logo-nombre">GH Records</span></div>
+        <div class="logo-item"><img src="imagenes/logos/hq.png" alt="HQ" loading="lazy" decoding="async"/><span class="logo-nombre">HQ</span></div>
+        <div class="logo-item"><img src="imagenes/logos/enfermos-del-padel.png" alt="Enfermos del Padel" loading="lazy" decoding="async"/><span class="logo-nombre">Enfermos del Padel</span></div>
+      </div>
+    </div>
+
+    <div class="editoriales">
+      <p class="bloque-label">Editorial</p>
+
+      <button class="proyecto-card pdf-card ed-ancho" data-cat="editorial" data-nombre="Catálogo EcoFlow 2026"
+              data-pdf="pdfs/catalogo-ef26.pdf" data-spread="1" data-portada="1" style="aspect-ratio: 842 / 595;">
+        <img class="proyecto-img" src="imagenes/catalogo-ecoflow-mockup.jpg" alt="Catálogo EcoFlow 2026 abierto sobre una superficie" width="1800" height="1284" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; transition: opacity 0.7s ease;"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">Editorial · Catálogo digital</span>
+          <span class="proyecto-nombre">Catálogo EcoFlow 2026</span>
+        </span>
+      </button>
+
+      <button class="proyecto-card pdf-card" data-cat="editorial" data-nombre="Revista mensual — abril 2025"
+              data-pdf="pdfs/revista-mensual-abril-2025.pdf" style="aspect-ratio: 685 / 968;">
+        <span class="pdf-loading">Cargando…</span>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">Editorial · Revista digital · Vertical</span>
+          <span class="proyecto-nombre">Revista mensual — abril 2025</span>
+        </span>
+      </button>
+
+      <button class="proyecto-card pdf-card ed-recorte" data-cat="editorial" data-nombre="Catálogo Día del Niño 2024"
+              data-pdf="pdfs/catalogo-nino-2024.pdf" style="aspect-ratio: 595 / 842;">
+        <span class="pdf-loading">Cargando…</span>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat">Editorial · Catálogo digital · Vertical</span>
+          <span class="proyecto-nombre">Catálogo Día del Niño 2024</span>
+        </span>
+      </button>
+
+    </div>
+
+    <button class="proyecto-card span-5" data-cat="exhibicion" data-nombre="Exhibición 01"
+            data-imgs="imagenes/exhibicion-01.jpg,imagenes/exhibicion-01b.jpg">
+      <img class="proyecto-img" src="imagenes/exhibicion-01.jpg" alt="Exhibición 01" width="1200" height="900" loading="lazy" decoding="async"/>
+      <span class="proyecto-overlay">
+        <span class="proyecto-cat">Exhibición</span>
+        <span class="proyecto-nombre">Exhibición 01</span>
+      </span>
+    </button>
+
+    <button class="proyecto-card span-7" data-cat="exhibicion" data-nombre="Exhibición 02"
+            data-imgs="imagenes/exhibicion-02.jpg">
+      <span class="proyecto-chip">Destacado</span>
+      <img class="proyecto-img" src="imagenes/exhibicion-02.jpg" alt="Exhibición 02" width="1200" height="900" loading="lazy" decoding="async"/>
+      <span class="proyecto-overlay">
+        <span class="proyecto-cat">Exhibición</span>
+        <span class="proyecto-nombre">Exhibición 02</span>
+      </span>
+    </button>
+
+  </div>
+</section>
+
+<!-- SOBRE MÍ -->
+<section id="sobre-mi" class="reveal">
+  <div class="about-body">
+    <div class="about-col">
+    <div class="about-header">
+      <p class="section-label">Quién soy</p>
+      <h2 class="section-title">Sobre mí</h2>
+    </div>
+    <div class="about-content">
+      <p class="about-text">
+        Soy diseñador gráfico, con base en Córdoba, Argentina y más de 8 años de experiencia. Trabajo en proyectos de identidad visual, diseño editorial, comunicación comercial y diseño de espacios.
+      </p>
+      <p class="about-text">
+        Me interesa entender cada proyecto en profundidad y encontrar una solución visual que responda a sus necesidades. Desde la construcción de una marca hasta el diseño de las piezas y espacios donde se presenta, busco que cada elemento forme parte de un sistema claro y coherente.
+      </p>
+    </div>
+    </div>
+
+    <!-- CONTACTO -->
+    <section id="contacto" class="reveal">
+      <div class="contacto-inner">
+        <p class="section-label">Hablemos</p>
+        <h2 class="contacto-title">¿Tenés un<br/><span>proyecto</span><br/>en mente?</h2>
+        <p class="contacto-invita">¡Contactame!</p>
+        <a class="contacto-email" href="mailto:tomasmanitta@gmail.com?subject=Consulta%20desde%20el%20portfolio">
+          <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;opacity:0.7"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+          tomasmanitta@gmail.com
+        </a>
+      </div>
+    </section>
+  </div>
+</section>
+
+
+<footer>
+  <span>© 2026 Tomás Manitta — Diseñador Gráfico</span>
+  <span>Córdoba, Argentina</span>
+</footer>
+
+<!-- VISOR DE MAILING -->
+<div class="maillb" id="mailLb" role="dialog" aria-modal="true" aria-labelledby="mailLbTitle" hidden>
+  <div class="maillb-top">
+    <div>
+      <span class="maillb-cat">Email Marketing</span>
+      <span class="maillb-title" id="mailLbTitle"></span>
+    </div>
+    <div class="maillb-acciones">
+      <button class="maillb-btn" id="mailLbPrev" type="button" aria-label="Pieza anterior">←</button>
+      <button class="maillb-btn" id="mailLbNext" type="button" aria-label="Pieza siguiente">→</button>
+      <button class="maillb-btn" id="mailLbClose" type="button" aria-label="Cerrar">Cerrar</button>
+    </div>
+  </div>
+  <div class="maillb-scroll" id="mailLbScroll">
+    <img id="mailLbImg" alt=""/>
+  </div>
+</div>
+
+<!-- LIGHTBOX -->
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-labelledby="lbTitle" hidden>
+  <div class="lb-top">
+    <div class="lb-meta">
+      <p class="lb-cat" id="lbCat"></p>
+      <h2 class="lb-title" id="lbTitle"></h2>
+    </div>
+    <button class="lb-close" id="lbClose" aria-label="Cerrar">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+    </button>
+  </div>
+  <div class="lb-stage">
+    <button class="lb-arrow" id="lbPrev" aria-label="Imagen anterior">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <div class="lb-figure"><img class="lb-img" id="lbImg" alt=""/><p class="lb-fallback" id="lbFallback" hidden></p></div>
+    <button class="lb-arrow" id="lbNext" aria-label="Imagen siguiente">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+  <div class="lb-bottom">
+    <div class="lb-thumbs" id="lbThumbs"></div>
+    <div class="lb-related" id="lbRelated">
+      <p class="lb-related-label">Proyectos relacionados</p>
+      <div class="lb-related-row" id="lbRelatedRow"></div>
+    </div>
+  </div>
+</div>
+
+<!-- VISOR PDF (revista digital) -->
+<div class="pdfv" id="pdfv" role="dialog" aria-modal="true" aria-labelledby="pdfvTitle" hidden>
+  <div class="pdfv-top">
+    <div class="pdfv-meta">
+      <p class="pdfv-cat" id="pdfvCat">Editorial</p>
+      <h2 class="pdfv-title" id="pdfvTitle"></h2>
+    </div>
+    <div class="pdfv-tools">
+      <button class="pdfv-btn" id="pdfvSpread" aria-pressed="false" title="Ver en pliego doble">Pliego</button>
+      <button class="pdfv-btn" id="pdfvClose" aria-label="Cerrar visor">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
+      </button>
+    </div>
+  </div>
+  <div class="pdfv-stage">
+    <button class="pdfv-arrow" id="pdfvPrev" aria-label="Página anterior">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m15 18-6-6 6-6"/></svg>
+    </button>
+    <div class="pdfv-spread" id="pdfvSpreadBox"></div>
+    <p class="pdfv-msg" id="pdfvMsg" hidden></p>
+    <button class="pdfv-arrow" id="pdfvNext" aria-label="Página siguiente">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m9 18 6-6-6-6"/></svg>
+    </button>
+  </div>
+  <div class="pdfv-bottom"><span id="pdfvCount">—</span></div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var BASE = 'https://cdn.jsdelivr.net/npm/pdfjs-dist@3.11.174/legacy/build/';
+  var el = document.getElementById('pdfv');
+  if (!el) return;
+  var box = document.getElementById('pdfvSpreadBox');
+  var msg = document.getElementById('pdfvMsg');
+  var titleEl = document.getElementById('pdfvTitle');
+  var catEl = document.getElementById('pdfvCat');
+  var countEl = document.getElementById('pdfvCount');
+  var btnSpread = document.getElementById('pdfvSpread');
+  var prev = document.getElementById('pdfvPrev');
+  var next = document.getElementById('pdfvNext');
+  var stage = el.querySelector('.pdfv-stage');
+
+  var libP = null;
+  function lib() {
+    if (libP) return libP;
+    libP = new Promise(function (res, rej) {
+      var s = document.createElement('script');
+      s.src = BASE + 'pdf.min.js';
+      s.onload = function () {
+        if (!window.pdfjsLib) { rej(new Error('pdfjs')); return; }
+        window.pdfjsLib.GlobalWorkerOptions.workerSrc = BASE + 'pdf.worker.min.js';
+        res(window.pdfjsLib);
+      };
+      s.onerror = function () { rej(new Error('pdfjs')); };
+      document.head.appendChild(s);
+    });
+    return libP;
+  }
+
+  var st = { doc: null, total: 0, cur: 1, spread: false, lastFocus: null, token: 0 };
+
+  function showMsg(t) { msg.textContent = t; msg.hidden = false; box.innerHTML = ''; }
+
+  function pagesFor(n) {
+    if (!st.spread) return [n];
+    /* en los catálogos apaisados la tapa ya forma pliego con la página 2 */
+    if (n <= 1) return (st.forceSpread && st.total > 1) ? [1, 2] : [1];
+    return n + 1 <= st.total ? [n, n + 1] : [n];
+  }
+
+  function render() {
+    if (!st.doc) return;
+    var my = ++st.token;
+    var list = pagesFor(st.cur);
+    var esMob = window.matchMedia('(max-width: 760px)').matches;
+    var availW = stage.clientWidth - (esMob ? 10 : 2 * 44 + 2 * 32 + 24);
+    var availH = stage.clientHeight - (esMob ? 12 : 48);
+    var dpr = Math.min(window.devicePixelRatio || 1, esMob ? 2.5 : 2);
+
+    Promise.all(list.map(function (n) { return st.doc.getPage(n); })).then(function (pgs) {
+      if (my !== st.token) return;
+      var vps = pgs.map(function (p) { return p.getViewport({ scale: 1 }); });
+      var totalW = vps.reduce(function (a, v) { return a + v.width; }, 0);
+      var maxH = Math.max.apply(null, vps.map(function (v) { return v.height; }));
+      var scale = Math.min(availW / totalW, availH / maxH);
+      if (!isFinite(scale) || scale <= 0) scale = 1;
+
+      var frag = document.createDocumentFragment();
+      var jobs = pgs.map(function (p, i) {
+        var vp = p.getViewport({ scale: scale * dpr });
+        var c = document.createElement('canvas');
+        c.width = Math.floor(vp.width);
+        c.height = Math.floor(vp.height);
+        c.style.width = Math.floor(vps[i].width * scale) + 'px';
+        c.style.height = Math.floor(vps[i].height * scale) + 'px';
+        frag.appendChild(c);
+        return p.render({ canvasContext: c.getContext('2d'), viewport: vp }).promise;
+      });
+      return Promise.all(jobs).then(function () {
+        if (my !== st.token) return;
+        msg.hidden = true;
+        box.innerHTML = '';
+        box.appendChild(frag);
+        countEl.textContent = list.length > 1
+          ? list[0] + '\u2013' + list[1] + ' / ' + st.total
+          : list[0] + ' / ' + st.total;
+        prev.disabled = st.cur <= 1;
+        next.disabled = list[list.length - 1] >= st.total;
+      });
+    }).catch(function () {
+      if (my === st.token) showMsg('No se pudo mostrar esta p\u00e1gina');
+    });
+  }
+
+  function go(dir) {
+    if (!st.doc) return;
+    var step = st.spread ? ((st.cur === 1 && dir > 0 && !st.forceSpread) ? 1 : 2) : 1;
+    var n = st.cur + dir * step;
+    if (st.spread && dir < 0 && n > 1 && n % 2 !== 0) n -= 1;
+    if (n < 1) n = 1;
+    if (n > st.total) return;
+    st.cur = n;
+    render();
+  }
+
+  function open(card) {
+    var url = card.getAttribute('data-pdf');
+    if (!url) return;
+    st.forceSpread = card.getAttribute('data-spread') === '1';    st.lastFocus = document.activeElement;
+    titleEl.textContent = card.getAttribute('data-nombre') || 'Proyecto editorial';
+    catEl.textContent = card.getAttribute('data-cat-label') || 'Editorial';
+    el.hidden = false;
+    el.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    showMsg('Cargando\u2026');
+    st.doc = null; st.cur = 1; st.total = 0;
+    countEl.textContent = '\u2014';
+    prev.disabled = true; next.disabled = true;
+    document.getElementById('pdfvClose').focus();
+
+    lib().then(function (pdfjsLib) {
+      return pdfjsLib.getDocument(url).promise;
+    }).then(function (doc) {
+      st.doc = doc;
+      st.total = doc.numPages;
+      return doc.getPage(1);
+    }).then(function (p) {
+      var vp = p.getViewport({ scale: 1 });
+      var portrait = vp.height > vp.width * 1.05;
+      var esMobile = window.matchMedia('(max-width: 760px)').matches;
+      st.spread = !esMobile && (st.forceSpread || (portrait && st.total > 2));
+      btnSpread.setAttribute('aria-pressed', st.spread ? 'true' : 'false');
+      render();
+    }).catch(function () {
+      showMsg('No se pudo cargar el PDF. Verific\u00e1 la ruta del archivo o tu conexi\u00f3n.');
+    });
+  }
+
+  function close() {
+    st.token++;
+    el.classList.remove('open');
+    el.hidden = true;
+    box.innerHTML = '';
+    document.body.style.overflow = '';
+    if (st.doc && st.doc.destroy) { try { st.doc.destroy(); } catch (e) {} }
+    st.doc = null;
+    if (st.lastFocus && st.lastFocus.focus) st.lastFocus.focus();
+  }
+
+  prev.addEventListener('click', function () { go(-1); });
+  next.addEventListener('click', function () { go(1); });
+  document.getElementById('pdfvClose').addEventListener('click', close);
+  btnSpread.addEventListener('click', function () {
+    st.spread = !st.spread;
+    btnSpread.setAttribute('aria-pressed', st.spread ? 'true' : 'false');
+    if (st.spread && st.cur > 1 && st.cur % 2 !== 0) st.cur -= 1;
+    render();
+  });
+  stage.addEventListener('click', function (e) {
+    if (e.target === stage || e.target === box) close();
+  });
+  /* swipe para pasar de p\u00e1gina en t\u00e1ctil */
+  var tx = 0, ty = 0;
+  stage.addEventListener('touchstart', function (e) {
+    tx = e.touches[0].clientX; ty = e.touches[0].clientY;
+  }, { passive: true });
+  stage.addEventListener('touchend', function (e) {
+    var dx = e.changedTouches[0].clientX - tx;
+    var dy = e.changedTouches[0].clientY - ty;
+    if (Math.abs(dx) > 45 && Math.abs(dx) > Math.abs(dy) * 1.4) go(dx < 0 ? 1 : -1);
+  }, { passive: true });
+  document.addEventListener('keydown', function (e) {
+    if (!el.classList.contains('open')) return;
+    if (e.key === 'Escape') close();
+    else if (e.key === 'ArrowRight') go(1);
+    else if (e.key === 'ArrowLeft') go(-1);
+  });
+  var rt;
+  window.addEventListener('resize', function () {
+    if (!el.classList.contains('open')) return;
+    clearTimeout(rt);
+    rt = setTimeout(render, 150);
+  });
+
+  /* Intercepta las tarjetas con data-pdf antes de que abra el lightbox */
+  document.addEventListener('click', function (e) {
+    var card = e.target.closest ? e.target.closest('.proyecto-card[data-pdf]') : null;
+    if (!card) return;
+    if (e.target.closest('.carrusel-flecha')) return;
+    e.preventDefault();
+    e.stopPropagation();
+    open(card);
+  }, true);
+
+  /* Portadas: la primera página de cada PDF se dibuja en la tarjeta */
+  var sinMov = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  function tapa(card) {
+    if (card.dataset.tapaLista) return;
+    card.dataset.tapaLista = '1';
+    var url = card.getAttribute('data-pdf');
+    var pliego = card.hasAttribute('data-pliego');
+    var aviso = card.querySelector('.pdf-loading');
+    lib().then(function (pdfjsLib) {
+      return pdfjsLib.getDocument(url).promise;
+    }).then(function (doc) {
+      var total = doc.numPages;
+      var dpr = Math.min(window.devicePixelRatio || 1, 2);
+      var w = Math.max(card.clientWidth, 560);
+
+      /* cuadros del carrusel: se muestra todo menos la última página
+         (la contratapa se ve igual dentro del visor grande) */
+      var hasta = total > 1 ? total - 1 : total;
+      var cuadros = [];
+      var portada = card.querySelector('.proyecto-img');
+      if (portada) cuadros.push('portada');
+      if (pliego) {
+        cuadros.push([1]);
+        for (var n = 2; n <= hasta; n += 2) cuadros.push(n + 1 <= hasta ? [n, n + 1] : [n]);
+      } else {
+        for (var m = 1; m <= hasta; m++) cuadros.push([m]);
+      }
+
+      /* dos lienzos que se alternan: recorre todo el PDF sin guardar una imagen por página */
+      var a = document.createElement('canvas');
+      var b = document.createElement('canvas');
+      card.appendChild(a);
+      card.appendChild(b);
+
+      function dibujar(idx, lienzo) {
+        var nums = cuadros[idx];
+        if (nums === 'portada') { portada.style.opacity = '1'; return Promise.resolve(); }
+        return Promise.all(nums.map(function (num) { return doc.getPage(num); })).then(function (pgs) {
+          var v1 = pgs[0].getViewport({ scale: 1 });
+          var cols = pliego ? 2 : 1;
+          var escala = (w / (v1.width * cols)) * dpr;
+          var pw = Math.floor(v1.width * escala), ph = Math.floor(v1.height * escala);
+          var cw = pw * cols;
+          /* cada página se dibuja en su propio lienzo aparte y después se pegan juntas */
+          return Promise.all(pgs.map(function (p) {
+            var t = document.createElement('canvas');
+            t.width = pw; t.height = ph;
+            return p.render({ canvasContext: t.getContext('2d'), viewport: p.getViewport({ scale: escala }) })
+              .promise.then(function () { return t; });
+          })).then(function (partes) {
+            if (lienzo.width !== cw || lienzo.height !== ph) { lienzo.width = cw; lienzo.height = ph; }
+            var ctx = lienzo.getContext('2d');
+            ctx.clearRect(0, 0, cw, ph);
+            /* la tapa sola va a la derecha, como una revista recién abierta */
+            var offset = (pliego && nums.length === 1 && nums[0] === 1) ? pw : 0;
+            partes.forEach(function (t, k) { ctx.drawImage(t, offset + k * pw, 0); });
+            if (portada) portada.style.opacity = '0';
+          });
+        });
+      }
+
+      return dibujar(0, a).then(function () {
+        if (aviso) aviso.remove();
+        a.classList.add('activa');
+        pase(card, cuadros.length, dibujar, a, b, portada ? 3200 : 0);
+      });
+    }).catch(function () {
+      if (aviso) aviso.textContent = 'Ver PDF';
+    });
+  }
+
+  /* pase automático por todo el PDF, igual que los carruseles de placas */
+  function pase(card, total, dibujar, frente, fondo, demora) {
+    var i = 0, pausado = false, timer = null, ocupado = false;
+
+    var puntos = document.createElement('span');
+    puntos.className = 'carrusel-puntos';
+    var bolitas = [];
+    for (var k = 0; k < total; k++) {
+      var d = document.createElement('span');
+      d.className = 'carrusel-punto' + (k === 0 ? ' activo' : '');
+      puntos.appendChild(d);
+      bolitas.push(d);
+    }
+    if (total > 1) card.appendChild(puntos);
+
+    function mostrar(n) {
+      n = (n + total) % total;
+      if (ocupado || n === i || total < 2) return;
+      ocupado = true;
+      dibujar(n, fondo).then(function () {
+        fondo.classList.add('activa');
+        frente.classList.remove('activa');
+        var t = frente; frente = fondo; fondo = t;
+        i = n;
+        bolitas.forEach(function (d, k) { d.classList.toggle('activo', k === i); });
+        ocupado = false;
+      }).catch(function () { ocupado = false; });
+    }
+
+    [['izq', 'm15 18-6-6 6-6', -1, 'Anterior'], ['der', 'm9 18 6-6-6-6', 1, 'Siguiente']].forEach(function (cfg) {
+      var btn = document.createElement('span');
+      btn.className = 'carrusel-flecha ' + cfg[0];
+      btn.setAttribute('role', 'button');
+      btn.setAttribute('aria-label', cfg[3]);
+      btn.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + cfg[1] + '"/></svg>';
+      btn.addEventListener('click', function (e) {
+        e.stopPropagation();
+        e.preventDefault();
+        mostrar(i + cfg[2]);
+      }, true);
+      card.appendChild(btn);
+    });
+
+    card.addEventListener('mouseenter', function () { pausado = true; });
+    card.addEventListener('mouseleave', function () { pausado = false; });
+
+    function correr() { if (!timer && !sinMov) timer = setInterval(function () { if (!pausado) mostrar(i + 1); }, 2000); }
+    function parar() { clearInterval(timer); timer = null; }
+
+    if (demora) setTimeout(correr, demora); else correr();
+    /* si el navegador lo soporta, se pausa cuando la tarjeta sale de pantalla */
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (ents) {
+        ents.forEach(function (en) { pausado = !en.isIntersecting; });
+      }, { threshold: 0.15 }).observe(card);
+    }
+  }
+  var tapas = Array.prototype.slice.call(document.querySelectorAll('.pdf-card[data-pdf]'));
+  if (tapas.length) {
+    if ('IntersectionObserver' in window) {
+      var obs = new IntersectionObserver(function (ents) {
+        ents.forEach(function (en) {
+          if (en.isIntersecting) { tapa(en.target); obs.unobserve(en.target); }
+        });
+      }, { rootMargin: '600px' });
+      tapas.forEach(function (c) { obs.observe(c); });
+    }
+    /* plan B: sin observador se dibujan todas; con observador, solo las que ya están cerca */
+    setTimeout(function () {
+      if (!('IntersectionObserver' in window)) { tapas.forEach(tapa); return; }
+      tapas.forEach(function (c) {
+        var r = c.getBoundingClientRect();
+        if (r.top < window.innerHeight + 600 && r.bottom > -600) tapa(c);
+      });
+    }, 3000);
+  }
+})();
+</script>
+
+<script>
+(function () {
+  'use strict';
+
+  var CATS = {
+    branding: 'Logos',
+    editorial: 'Editorial',
+    placas: 'Placas Comerciales',
+    exhibicion: 'Exhibición',
+    pop: 'POP',
+    emkt: 'Email Marketing'
+  };
+
+  /* ── Imágenes faltantes → placeholder con el nombre del archivo ── */
+  function placeholderFor(img) {
+    if (img.dataset.fallbackDone) return;
+    img.dataset.fallbackDone = '1';
+    var ph = document.createElement('div');
+    ph.className = img.classList.contains('about-img') ? 'placeholder-portrait' : 'placeholder-img';
+    ph.textContent = img.getAttribute('src') || 'imagen';
+    img.replaceWith(ph);
+  }
+  document.querySelectorAll('.proyecto-img, .about-img').forEach(function (img) {
+    img.addEventListener('error', function () { placeholderFor(img); });
+    if (img.complete && img.naturalWidth === 0) placeholderFor(img);
+  });
+
+  /* ── Modo claro / oscuro ── */
+  var themeToggle = document.getElementById('themeToggle');
+  var themeMeta = document.querySelector('meta[name="theme-color"]');
+  function applyTheme(light) {
+    document.body.classList.toggle('light-mode', light);
+    themeToggle.setAttribute('aria-pressed', light ? 'true' : 'false');
+    if (themeMeta) themeMeta.setAttribute('content', light ? '#F5F4F0' : '#0E0E0E');
+  }
+  var saved = null;
+  try { saved = localStorage.getItem('theme'); } catch (e) {}
+  /* arranca en modo claro salvo que el visitante haya elegido oscuro */
+  applyTheme(saved !== 'dark');
+
+  themeToggle.addEventListener('click', function () {
+    var light = !document.body.classList.contains('light-mode');
+    applyTheme(light);
+    try { localStorage.setItem('theme', light ? 'light' : 'dark'); } catch (e) {}
+  });
+
+  /* ── Menú mobile ── */
+  var navToggle = document.getElementById('navToggle');
+  var navLinksEl = document.getElementById('navLinks');
+  function closeMenu() {
+    navToggle.classList.remove('open');
+    navLinksEl.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+    navToggle.setAttribute('aria-label', 'Abrir menú');
+    document.body.classList.remove('menu-open');
+  }
+  navToggle.addEventListener('click', function () {
+    var open = !navLinksEl.classList.contains('open');
+    navLinksEl.classList.toggle('open', open);
+    navToggle.classList.toggle('open', open);
+    navToggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    navToggle.setAttribute('aria-label', open ? 'Cerrar menú' : 'Abrir menú');
+    document.body.classList.toggle('menu-open', open);
+  });
+  navLinksEl.querySelectorAll('a').forEach(function (a) {
+    a.addEventListener('click', closeMenu);
+  });
+
+  /* ── Filtro de proyectos ── */
+  var grid = document.getElementById('proyectosGrid');
+  var cards = Array.prototype.slice.call(grid.querySelectorAll('.proyecto-card'));
+  var empty = document.createElement('p');
+  empty.className = 'sin-resultados';
+  empty.hidden = true;
+  empty.textContent = 'Todavía no hay proyectos en esta categoría.';
+  grid.appendChild(empty);
+
+  var filtrables = Array.prototype.filter.call(grid.children, function (el) {
+    return el.hasAttribute('data-cat') || el.classList.contains('carruseles') || el.classList.contains('banners') || el.classList.contains('editoriales') || el.classList.contains('logofolio') || el.classList.contains('mailings');
+  });
+  var currentCat = 'todos';
+  document.querySelectorAll('.filtro-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      document.querySelectorAll('.filtro-btn').forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      currentCat = btn.dataset.cat;
+      var shown = 0;
+      filtrables.forEach(function (el) {
+        var cat = el.dataset.cat;
+        if (!cat && (el.classList.contains('carruseles') || el.classList.contains('banners') || el.classList.contains('editoriales') || el.classList.contains('mailings'))) {
+          var hijo = el.querySelector('[data-cat]');
+          cat = hijo ? hijo.dataset.cat : null;
+        }
+        var match = currentCat === 'todos' || cat === currentCat;
+        el.hidden = !match;
+        if (match) {
+          shown++;
+          el.classList.add('is-filtering');
+          requestAnimationFrame(function () { el.classList.remove('is-filtering'); });
+        }
+      });
+      empty.hidden = shown > 0;
+    });
+  });
+
+  /* ── En mobile las placas van en dos carruseles: el tercero se reparte ── */
+  function repartirPlacas() {
+    document.querySelectorAll('.carruseles').forEach(function (caja) {
+      var cols = Array.prototype.slice.call(caja.querySelectorAll('.carrusel'));
+      if (cols.length < 3) return;
+      /* en POP la tercera marca entra completa en la primera columna */
+      var base = caja.classList.contains('pop') ? cols.slice(0, 1) : cols.slice(0, 2);
+      var destinos = base.map(function (c) {
+        return { el: c, urls: (c.dataset.imgs || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean) };
+      });
+      var turno = 0;
+      cols.slice(2).forEach(function (extra) {
+        var urls = (extra.dataset.imgs || '').split(',').map(function (s) { return s.trim(); }).filter(Boolean);
+        Array.prototype.slice.call(extra.querySelectorAll('.proyecto-img')).forEach(function (im, k) {
+          var d = destinos[turno % destinos.length];
+          turno++;
+          im.classList.remove('activa');
+          d.el.insertBefore(im, d.el.querySelector('.proyecto-overlay'));
+          if (urls[k]) d.urls.push(urls[k]);
+        });
+        extra.remove();
+      });
+      destinos.forEach(function (d) { d.el.dataset.imgs = d.urls.join(','); });
+    });
+  }
+  if (window.matchMedia('(max-width: 768px)').matches) repartirPlacas();
+
+  /* ── Carruseles de placas: avanzan solos, se pausan al pasar el mouse ── */
+  var sinMovimiento = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.querySelectorAll('.carrusel').forEach(function (car, orden) {
+    var slides = Array.prototype.slice.call(car.querySelectorAll('.proyecto-img'));
+    if (slides.length < 2) return;
+
+    var puntos = document.createElement('span');
+    puntos.className = 'carrusel-puntos';
+    slides.forEach(function (_, n) {
+      var p = document.createElement('span');
+      p.className = 'carrusel-punto' + (n === 0 ? ' activo' : '');
+      puntos.appendChild(p);
+    });
+    car.appendChild(puntos);
+
+    var flechas = [
+      { clase: 'izq', d: 'm15 18-6-6 6-6', paso: -1, label: 'Anterior' },
+      { clase: 'der', d: 'm9 18 6-6-6-6', paso: 1, label: 'Siguiente' }
+    ].map(function (cfg) {
+      var b = document.createElement('button');
+      b.className = 'carrusel-flecha ' + cfg.clase;
+      b.setAttribute('aria-label', cfg.label);
+      b.innerHTML = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="' + cfg.d + '"/></svg>';
+      b.addEventListener('click', function (e) {
+        /* navegar sin abrir el lightbox */
+        e.stopPropagation();
+        ir(i + cfg.paso);
+      });
+      car.appendChild(b);
+      return b;
+    });
+
+    var i = 0, timer = null, enPantalla = true, pausado = false;
+    function ir(n) {
+      i = (n + slides.length) % slides.length;
+      slides.forEach(function (s, k) { s.classList.toggle('activa', k === i); });
+      Array.prototype.forEach.call(puntos.children, function (p, k) { p.classList.toggle('activo', k === i); });
+    }
+    function correr() {
+      if (timer || sinMovimiento) return;
+      /* Un desfase por carrusel para que no cambien los dos al mismo tiempo */
+      timer = setInterval(function () {
+        if (enPantalla && !pausado) ir(i + 1);
+      }, (car.closest('.pop') ? 1100 : car.classList.contains('cuadrado') ? 1500 : 2400) + orden * 450);
+    }
+    function parar() { clearInterval(timer); timer = null; }
+
+    car.addEventListener('mouseenter', function () { pausado = true; });
+    car.addEventListener('mouseleave', function () { pausado = false; });
+    car.addEventListener('focusin', function () { pausado = true; });
+    car.addEventListener('focusout', function () { pausado = false; });
+    car.dataset.indice = '0';
+    car.addEventListener('click', function () { car.dataset.indice = String(i); });
+
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) {
+        enPantalla = en[0].isIntersecting;
+        if (enPantalla) correr(); else parar();
+      }, { rootMargin: '100px' }).observe(car);
+    } else {
+      correr();
+    }
+  });
+
+  /* ── Logofolio: las columnas alternan, primero una y despu\u00e9s la otra ── */
+  (function () {
+    var cols = Array.prototype.slice.call(document.querySelectorAll('.logo-col')).map(function (col) {
+      var items = Array.prototype.slice.call(col.querySelectorAll('.logo-item'));
+      var est = { col: col, items: items, i: 0, pausado: false };
+      col.addEventListener('mouseenter', function () { est.pausado = true; });
+      col.addEventListener('mouseleave', function () { est.pausado = false; });
+      return est;
+    }).filter(function (c) { return c.items.length > 1; });
+    if (!cols.length || sinMovimiento) return;
+
+    var turno = 0, enPantalla = true, timer = null;
+    function tick() {
+      if (!enPantalla) return;
+      var intentos = 0;
+      while (intentos < cols.length) {
+        var c = cols[turno % cols.length];
+        turno++;
+        intentos++;
+        if (!c.pausado) {
+          c.i = (c.i + 1) % c.items.length;
+          c.items.forEach(function (s, k) { s.classList.toggle('activa', k === c.i); });
+          return;
+        }
+      }
+    }
+    function correr() { if (!timer) timer = setInterval(tick, 1700); }
+    function parar() { clearInterval(timer); timer = null; }
+
+    var caja = cols[0].col.parentNode;
+    if ('IntersectionObserver' in window) {
+      new IntersectionObserver(function (en) {
+        enPantalla = en[0].isIntersecting;
+        if (enPantalla) correr(); else parar();
+      }, { rootMargin: '100px' }).observe(caja);
+    } else { correr(); }
+  })();
+
+  /* ── Email marketing: cada ventana scrollea la pieza y pasa a la siguiente ── */
+  (function () {
+    var cols = Array.prototype.slice.call(document.querySelectorAll('.mail-col'));
+    if (!cols.length) return;
+    var VEL = 55;            /* px por segundo */
+    var ESPERA_INICIO = 900; /* pausa arriba antes de arrancar */
+    var ESPERA_FIN = 1100;   /* pausa abajo antes de cambiar */
+
+    cols.forEach(function (col, orden) {
+      var items = Array.prototype.slice.call(col.querySelectorAll('.mail-item'));
+      if (!items.length) return;
+      var etiqueta = col.querySelector('.mail-nombre');
+      var i = 0, enPantalla = false, raf = null, pausado = false;
+      var t0 = 0, fase = 'inicio';
+
+      function activa() { return items[i]; }
+      function img() { return activa().querySelector('img'); }
+
+      function mostrar(n) {
+        i = (n + items.length) % items.length;
+        items.forEach(function (s, k) { s.classList.toggle('activa', k === i); });
+        var im = img();
+        if (im) im.style.transform = 'translateY(0)';
+        if (etiqueta) etiqueta.textContent = activa().dataset.nombre || '';
+        fase = 'inicio';
+        t0 = performance.now();
+      }
+
+      function paso(ahora) {
+        raf = requestAnimationFrame(paso);
+        if (!enPantalla || pausado) { t0 = ahora - 0; return; }
+        var im = img();
+        if (!im || !im.complete || !im.naturalHeight) { t0 = ahora; return; }
+        var recorrido = im.offsetHeight - col.clientHeight;
+        if (recorrido <= 4) {
+          if (ahora - t0 > 3200 && items.length > 1) mostrar(i + 1);
+          return;
+        }
+        var dur = (recorrido / VEL) * 1000;
+        var t = ahora - t0;
+        if (fase === 'inicio') {
+          if (t > ESPERA_INICIO) { fase = 'scroll'; t0 = ahora; }
+          return;
+        }
+        if (fase === 'scroll') {
+          var p = Math.min(t / dur, 1);
+          im.style.transform = 'translateY(' + (-recorrido * p) + 'px)';
+          if (p === 1) { fase = 'fin'; t0 = ahora; }
+          return;
+        }
+        if (t > ESPERA_FIN) {
+          if (items.length > 1) mostrar(i + 1);
+          else { fase = 'inicio'; t0 = ahora; im.style.transform = 'translateY(0)'; }
+        }
+      }
+
+      col.addEventListener('click', function () { abrirMailLb(items, i); });
+      col.addEventListener('keydown', function (e) {
+        if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); abrirMailLb(items, i); }
+      });
+
+      if (etiqueta) etiqueta.textContent = items[0].dataset.nombre || '';
+
+      if (sinMovimiento) return;
+      if ('IntersectionObserver' in window) {
+        new IntersectionObserver(function (en) {
+          enPantalla = en[0].isIntersecting;
+          if (enPantalla && !raf) { t0 = performance.now() - orden * 600; raf = requestAnimationFrame(paso); }
+        }, { rootMargin: '150px' }).observe(col);
+      } else {
+        enPantalla = true;
+        t0 = performance.now();
+        raf = requestAnimationFrame(paso);
+      }
+    });
+  })();
+
+  /* ── Visor de mailing: ventana grande que sigue scrolleando ── */
+  var mlb = document.getElementById('mailLb');
+  var mlbScroll = document.getElementById('mailLbScroll');
+  var mlbImg = document.getElementById('mailLbImg');
+  var mlbTitle = document.getElementById('mailLbTitle');
+  var mlbEstado = { items: [], i: 0, raf: null, manual: false, t0: 0, fase: 'inicio', foco: null };
+
+  function mlbPintar() {
+    var it = mlbEstado.items[mlbEstado.i];
+    if (!it) return;
+    var src = it.querySelector('img').getAttribute('src');
+    mlbImg.src = src;
+    mlbImg.alt = it.dataset.nombre || '';
+    mlbTitle.textContent = it.dataset.nombre || '';
+    mlbScroll.scrollTop = 0;
+    mlbEstado.manual = false;
+    mlbEstado.fase = 'inicio';
+    mlbEstado.t0 = performance.now();
+  }
+
+  function mlbPaso(ahora) {
+    mlbEstado.raf = requestAnimationFrame(mlbPaso);
+    if (mlbEstado.manual) return;
+    var recorrido = mlbScroll.scrollHeight - mlbScroll.clientHeight;
+    if (recorrido <= 4) return;
+    var dur = (recorrido / 70) * 1000;
+    var t = ahora - mlbEstado.t0;
+    if (mlbEstado.fase === 'inicio') {
+      if (t > 700) { mlbEstado.fase = 'scroll'; mlbEstado.t0 = ahora; }
+      return;
+    }
+    if (mlbEstado.fase === 'scroll') {
+      var p = Math.min(t / dur, 1);
+      mlbScroll.scrollTop = recorrido * p;
+      if (p === 1) { mlbEstado.fase = 'fin'; mlbEstado.t0 = ahora; }
+      return;
+    }
+    if (t > 1400) mlbIr(1);
+  }
+
+  function mlbIr(d) {
+    if (!mlbEstado.items.length) return;
+    mlbEstado.i = (mlbEstado.i + d + mlbEstado.items.length) % mlbEstado.items.length;
+    mlbPintar();
+  }
+
+  function abrirMailLb(items, i) {
+    mlbEstado.items = items;
+    mlbEstado.i = i || 0;
+    mlbEstado.foco = document.activeElement;
+    mlb.hidden = false;
+    requestAnimationFrame(function () { mlb.classList.add('open'); });
+    document.body.style.overflow = 'hidden';
+    mlbPintar();
+    document.getElementById('mailLbClose').focus();
+    if (!mlbEstado.raf) mlbEstado.raf = requestAnimationFrame(mlbPaso);
+  }
+
+  function cerrarMailLb() {
+    mlb.classList.remove('open');
+    document.body.style.overflow = '';
+    cancelAnimationFrame(mlbEstado.raf);
+    mlbEstado.raf = null;
+    setTimeout(function () { mlb.hidden = true; mlbImg.removeAttribute('src'); }, 250);
+    if (mlbEstado.foco && mlbEstado.foco.focus) mlbEstado.foco.focus();
+  }
+
+  ['wheel', 'touchstart', 'pointerdown', 'keydown'].forEach(function (ev) {
+    mlbScroll.addEventListener(ev, function () { mlbEstado.manual = true; }, { passive: true });
+  });
+  document.getElementById('mailLbClose').addEventListener('click', cerrarMailLb);
+  mlbScroll.addEventListener('click', function (e) { if (e.target === mlbScroll) cerrarMailLb(); });
+  document.getElementById('mailLbPrev').addEventListener('click', function () { mlbIr(-1); });
+  document.getElementById('mailLbNext').addEventListener('click', function () { mlbIr(1); });
+  document.addEventListener('keydown', function (e) {
+    if (mlb.hidden) return;
+    if (e.key === 'Escape') cerrarMailLb();
+    if (e.key === 'ArrowRight') mlbIr(1);
+    if (e.key === 'ArrowLeft') mlbIr(-1);
+  });
+
+  /* ── Lightbox ── */
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCat = document.getElementById('lbCat');
+  var lbTitle = document.getElementById('lbTitle');
+  var lbThumbs = document.getElementById('lbThumbs');
+  var lbRelated = document.getElementById('lbRelated');
+  var lbRelatedRow = document.getElementById('lbRelatedRow');
+  var lbPrev = document.getElementById('lbPrev');
+  var lbNext = document.getElementById('lbNext');
+  var lbClose = document.getElementById('lbClose');
+  var lbFallback = document.getElementById('lbFallback');
+
+  var state = { card: null, imgs: [], i: 0, lastFocus: null };
+
+  /* Si una imagen del lightbox falta, se muestra el nombre del archivo */
+  lbImg.addEventListener('error', function () {
+    lbImg.style.visibility = 'hidden';
+    lbFallback.textContent = lbImg.getAttribute('src') || '';
+    lbFallback.hidden = false;
+  });
+  lbImg.addEventListener('load', function () {
+    lbImg.style.visibility = 'visible';
+    lbFallback.hidden = true;
+  });
+
+  function imgsOf(card) {
+    return (card.dataset.imgs || '').split(',')
+      .map(function (s) { return s.trim(); })
+      .filter(Boolean);
+  }
+
+  function show(i) {
+    if (!state.imgs.length) return;
+    state.i = (i + state.imgs.length) % state.imgs.length;
+    lbImg.src = state.imgs[state.i];
+    lbImg.alt = state.card.dataset.nombre + ' — imagen ' + (state.i + 1);
+    Array.prototype.forEach.call(lbThumbs.children, function (t, n) {
+      t.classList.toggle('active', n === state.i);
+    });
+    var multi = state.imgs.length > 1;
+    lbPrev.hidden = !multi;
+    lbNext.hidden = !multi;
+    lbThumbs.hidden = !multi;
+  }
+
+  function open(card) {
+    state.card = card;
+    state.imgs = imgsOf(card);
+    state.lastFocus = document.activeElement;
+
+    lbCat.textContent = CATS[card.dataset.cat] || '';
+    lbTitle.textContent = card.dataset.nombre || '';
+
+    lbThumbs.innerHTML = '';
+    state.imgs.forEach(function (src, n) {
+      var t = document.createElement('img');
+      t.className = 'lb-thumb';
+      t.src = src;
+      t.alt = 'Ver imagen ' + (n + 1);
+      t.loading = 'lazy';
+      t.addEventListener('click', function () { show(n); });
+      lbThumbs.appendChild(t);
+    });
+
+    lbRelatedRow.innerHTML = '';
+    var related = cards.filter(function (c) {
+      return c !== card && c.dataset.cat === card.dataset.cat;
+    });
+    if (!related.length) {
+      related = cards.filter(function (c) { return c !== card; }).slice(0, 4);
+    }
+    related.slice(0, 6).forEach(function (c) {
+      var item = document.createElement('button');
+      item.className = 'lb-related-item';
+      var thumb = document.createElement('img');
+      thumb.src = imgsOf(c)[0] || '';
+      thumb.alt = '';
+      thumb.loading = 'lazy';
+      var label = document.createElement('span');
+      label.textContent = c.dataset.nombre;
+      item.appendChild(thumb);
+      item.appendChild(label);
+      item.addEventListener('click', function () { open(c); });
+      lbRelatedRow.appendChild(item);
+    });
+    lbRelated.hidden = !lbRelatedRow.children.length;
+
+    show(card.dataset.indice ? parseInt(card.dataset.indice, 10) || 0 : 0);
+    lb.hidden = false;
+    lb.classList.add('open');
+    document.body.classList.add('menu-open');
+    lbClose.focus();
+  }
+
+  function close() {
+    lb.classList.remove('open');
+    lb.hidden = true;
+    document.body.classList.remove('menu-open');
+    lbImg.removeAttribute('src');
+    if (state.lastFocus && state.lastFocus.focus) state.lastFocus.focus();
+  }
+
+  cards.forEach(function (card) {
+    card.addEventListener('click', function () { open(card); });
+  });
+  lbClose.addEventListener('click', close);
+  lbPrev.addEventListener('click', function () { show(state.i - 1); });
+  lbNext.addEventListener('click', function () { show(state.i + 1); });
+  lb.addEventListener('click', function (e) {
+    if (e.target === lb || e.target.classList.contains('lb-stage') || e.target.classList.contains('lb-figure')) close();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape') { closeMenu(); if (lb.classList.contains('open')) close(); }
+    if (!lb.classList.contains('open')) return;
+    if (e.key === 'ArrowLeft') show(state.i - 1);
+    if (e.key === 'ArrowRight') show(state.i + 1);
+  });
+
+  /* Swipe en mobile */
+  var touchX = null;
+  lb.addEventListener('touchstart', function (e) { touchX = e.touches[0].clientX; }, { passive: true });
+  lb.addEventListener('touchend', function (e) {
+    if (touchX === null) return;
+    var dx = e.changedTouches[0].clientX - touchX;
+    if (Math.abs(dx) > 50) show(state.i + (dx < 0 ? 1 : -1));
+    touchX = null;
+  }, { passive: true });
+
+  /* ── Reveal + nav activo (IntersectionObserver, sin listeners de scroll) ── */
+  var reveals = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window) {
+    var revealObs = new IntersectionObserver(function (entries) {
+      entries.forEach(function (en) {
+        if (en.isIntersecting) { en.target.classList.add('visible'); revealObs.unobserve(en.target); }
+      });
+    }, { rootMargin: '0px 0px -100px 0px' });
+    reveals.forEach(function (el) { revealObs.observe(el); });
+
+    var navLinks = document.querySelectorAll('.nav-links a');
+    var secciones = Array.prototype.slice.call(document.querySelectorAll('section[id]'));
+    /* La sección activa se calcula midiendo, no acumulando estados del
+       observer: gana la que cruza la línea de referencia (35% del alto de
+       pantalla), y la última si ya llegamos al final de la página. */
+    var navLogo = document.querySelector('.nav-logo');
+    var heroEl = document.getElementById('hero');
+    function actualizarNav() {
+      if (navLogo && heroEl) {
+        navLogo.classList.toggle('logo-visible', heroEl.getBoundingClientRect().bottom <= 64);
+      }
+      var linea = window.innerHeight * 0.35;
+      var activa = secciones[0].id;
+      for (var i = 0; i < secciones.length; i++) {
+        if (secciones[i].getBoundingClientRect().top <= linea) activa = secciones[i].id;
+      }
+      if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 4) {
+        activa = secciones[secciones.length - 1].id;
+      }
+      navLinks.forEach(function (a) {
+        a.classList.toggle('nav-active', a.getAttribute('href') === '#' + activa);
+      });
+    }
+    var navTick = false;
+    window.addEventListener('scroll', function () {
+      if (navTick) return;
+      navTick = true;
+      requestAnimationFrame(function () { actualizarNav(); navTick = false; });
+    }, { passive: true });
+    window.addEventListener('resize', actualizarNav, { passive: true });
+    actualizarNav();
+  } else {
+    reveals.forEach(function (el) { el.classList.add('visible'); });
+    var logoFallback = document.querySelector('.nav-logo');
+    if (logoFallback) logoFallback.classList.add('logo-visible');
+  }
+
+  /* ── Resplandores de fondo removidos: el color lo aporta el trabajo ── */
+})();
+</script>
+
+</body>
+</html>
