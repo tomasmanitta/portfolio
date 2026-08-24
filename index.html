@@ -160,6 +160,59 @@
     .nav-links a:hover,
     .nav-links a.nav-active { color: var(--accent); }
 
+    /* ── SELECTOR DE IDIOMA ── */
+    .lang-toggle {
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 0;
+      display: flex;
+      align-items: center;
+    }
+    .lang-pill {
+      width: 60px; height: 28px;
+      border-radius: 14px;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      position: relative;
+      transition: background 0.3s, border-color 0.3s;
+      display: block;
+    }
+    body.light-mode .lang-pill {
+      border-color: var(--accent);
+      background: #FBE9E0;
+    }
+    .lang-pill span:not(.lang-knob) {
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      z-index: 1;
+      font-size: 0.56rem;
+      font-weight: 600;
+      letter-spacing: 0.08em;
+      transition: color 0.3s;
+    }
+    .lang-pill .lang-es { left: 16px; }
+    .lang-pill .lang-en { left: 44px; }
+    /* la sigla activa queda sobre el círculo naranja: va en blanco; la otra, gris */
+    .lang-toggle .lang-es { color: #fff; }
+    .lang-toggle .lang-en { color: var(--muted); }
+    .lang-toggle.en .lang-es { color: var(--muted); }
+    .lang-toggle.en .lang-en { color: #fff; }
+    /* en modo claro el gris del sistema se pierde sobre el rosa: sigla inactiva más oscura */
+    body.light-mode .lang-toggle:not(.en) .lang-en,
+    body.light-mode .lang-toggle.en .lang-es { color: #8A5A44; }
+    .lang-knob {
+      position: absolute;
+      top: 3px; left: 3px;
+      width: 26px; height: 20px;
+      border-radius: 10px;
+      background: var(--accent);
+      transition: transform 0.3s cubic-bezier(0.34,1.56,0.64,1);
+      box-shadow: 0 1px 4px rgba(0,0,0,0.25);
+    }
+    .lang-toggle.en .lang-knob { transform: translateX(28px); }
+
     /* ── THEME TOGGLE ── */
     .theme-toggle {
       background: none;
@@ -444,6 +497,12 @@
     .carruseles.cuadrados { grid-template-columns: repeat(3, 1fr); max-width: 1000px; width: 100%;
       justify-self: center; }
     .carrusel.cuadrado { aspect-ratio: 1 / 1; }
+    /* Exhibidores en punto de venta: fotos verticales de local, cuatro en fila */
+    .carruseles.exhib { grid-template-columns: repeat(2, 1fr); max-width: 760px; gap: 1rem; }
+    /* el stand va solo, a lo ancho de la columna central */
+    .carruseles.stand { grid-template-columns: 1fr; max-width: 760px; }
+    .carruseles.stand .carrusel { aspect-ratio: 8 / 7; }
+    .carruseles.exhib .carrusel { aspect-ratio: 2 / 3; }
     .carrusel {
       position: relative;
       aspect-ratio: 9 / 16;
@@ -1283,6 +1342,8 @@
       .nav-logo { font-size: 1.15rem; }
       .nav-toggle { display: flex; }
       .nav-right { gap: 0.4rem; }
+      /* el menú a pantalla completa va en z 310: los toggles quedan por encima y siguen usables */
+      .lang-toggle, .theme-toggle { position: relative; z-index: 320; }
 
       .nav-links {
         position: fixed;
@@ -1338,7 +1399,7 @@
       .section-title { font-size: clamp(1.7rem, 6.5vw, 2.3rem); }
       .proyectos-grid { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; }
       .span-4, .span-5, .span-6, .span-7, .span-8, .span-12 { grid-column: 1 / -1; }
-      .carruseles, .carruseles.cuadrados { gap: 0.8rem; grid-template-columns: repeat(2, 1fr); }
+      .carruseles, .carruseles.cuadrados, .carruseles.exhib { gap: 0.8rem; grid-template-columns: repeat(2, 1fr); }
       .carruseles.pop { grid-template-columns: repeat(2, 1fr); }
       /* editoriales: el horizontal a lo ancho, los dos verticales en dos columnas */
       .editoriales { grid-template-columns: repeat(2, 1fr); gap: 0.8rem; max-width: none; }
@@ -1444,11 +1505,18 @@
   <a class="nav-logo" href="#hero">Tomás Manitta<span>.</span></a>
   <div class="nav-right">
     <ul class="nav-links" id="navLinks">
-      <li><a href="#servicios">Lo que hago</a></li>
-      <li><a href="#proyectos">Proyectos</a></li>
-      <li><a href="#sobre-mi">Sobre mí</a></li>
-      <li class="nav-contacto"><a href="#contacto">Contacto</a></li>
+      <li><a href="#servicios" data-i18n="nav.servicios">Lo que hago</a></li>
+      <li><a href="#proyectos" data-i18n="nav.proyectos">Proyectos</a></li>
+      <li><a href="#sobre-mi" data-i18n="nav.sobre">Sobre mí</a></li>
+      <li class="nav-contacto"><a href="#contacto" data-i18n="nav.contacto">Contacto</a></li>
     </ul>
+    <button class="lang-toggle" id="langToggle" type="button" aria-label="Idioma / Language" aria-pressed="false">
+      <span class="lang-pill">
+        <span class="lang-es">ES</span>
+        <span class="lang-en">EN</span>
+        <span class="lang-knob"></span>
+      </span>
+    </button>
     <button class="theme-toggle" id="themeToggle" aria-label="Cambiar modo claro/oscuro" aria-pressed="false">
       <span class="toggle-pill">
         <svg class="icon-moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -1466,39 +1534,39 @@
 <section id="hero">
   <div class="hero-inner">
     <h1 class="hero-name">Tomás<br/><em>Manitta</em></h1>
-    <p class="hero-eyebrow">Diseñador Gráfico · Córdoba, Argentina</p>
-    <a class="hero-cta" href="#proyectos">Ver proyectos</a>
+    <p class="hero-eyebrow" data-i18n="hero.eyebrow">Diseñador Gráfico · Córdoba, Argentina</p>
+    <a class="hero-cta" href="#proyectos" data-i18n="hero.cta">Ver proyectos</a>
   </div>
 </section>
 
 <!-- SERVICIOS -->
 <section id="servicios" class="reveal">
-  <p class="section-label">Especialidades</p>
-  <h2 class="section-title">Lo que hago</h2>
+  <p class="section-label" data-i18n="serv.label">Especialidades</p>
+  <h2 class="section-title" data-i18n="serv.title">Lo que hago</h2>
   <div class="servicios-grid">
     <div class="servicio-card">
-      <h3 class="servicio-nombre">Branding</h3>
-      <p class="servicio-desc">Identidad visual completa: logo, sistema de marca, paleta, tipografía y manual de uso.</p>
+      <h3 class="servicio-nombre" data-i18n="serv.branding">Branding</h3>
+      <p class="servicio-desc" data-i18n="serv.brandingD">Identidad visual completa: logo, sistema de marca, paleta, tipografía y manual de uso.</p>
     </div>
     <div class="servicio-card">
-      <h3 class="servicio-nombre">Diseño Editorial</h3>
-      <p class="servicio-desc">Catálogos, revistas, libros y material impreso, con la maquetación y los ajustes de preprensa listos para imprenta.</p>
+      <h3 class="servicio-nombre" data-i18n="serv.editorial">Diseño Editorial</h3>
+      <p class="servicio-desc" data-i18n="serv.editorialD">Catálogos, revistas, libros y material impreso, con la maquetación y los ajustes de preprensa listos para imprenta.</p>
     </div>
     <div class="servicio-card">
-      <h3 class="servicio-nombre">Placas Comerciales</h3>
-      <p class="servicio-desc">Piezas para redes sociales y campañas, adaptadas a cada formato y a la línea gráfica de la marca.</p>
+      <h3 class="servicio-nombre" data-i18n="serv.placas">Placas Comerciales</h3>
+      <p class="servicio-desc" data-i18n="serv.placasD">Piezas para redes sociales y campañas, adaptadas a cada formato y a la línea gráfica de la marca.</p>
     </div>
     <div class="servicio-card">
-      <h3 class="servicio-nombre">Stands &amp; Eventos</h3>
-      <p class="servicio-desc">Stands, ploteos y ambientación para ferias y exposiciones, del concepto a los planos de armado.</p>
+      <h3 class="servicio-nombre" data-i18n="serv.stands">Stands &amp; Eventos</h3>
+      <p class="servicio-desc" data-i18n="serv.standsD">Stands, ploteos y ambientación para ferias y exposiciones, del concepto a los planos de armado.</p>
     </div>
     <div class="servicio-card">
-      <h3 class="servicio-nombre">Muebles de Exhibición</h3>
-      <p class="servicio-desc">Mobiliario para punto de venta y espacios comerciales: concepto, materiales y despiece.</p>
+      <h3 class="servicio-nombre" data-i18n="serv.muebles">Muebles de Exhibición</h3>
+      <p class="servicio-desc" data-i18n="serv.mueblesD">Mobiliario para punto de venta y espacios comerciales: concepto, materiales y despiece.</p>
     </div>
     <div class="servicio-card">
       <h3 class="servicio-nombre">Email Marketing</h3>
-      <p class="servicio-desc">Newsletters y campañas de email armadas para que se vean bien en cualquier cliente de correo.</p>
+      <p class="servicio-desc" data-i18n="serv.emktD">Newsletters y campañas de email armadas para que se vean bien en cualquier cliente de correo.</p>
     </div>
   </div>
 </section>
@@ -1506,16 +1574,16 @@
 <!-- PROYECTOS -->
 <section id="proyectos" class="reveal">
   <div class="proyectos-header">
-    <p class="section-label">Trabajos</p>
-    <h2 class="section-title">Proyectos seleccionados</h2>
-    <div class="filtros" role="group" aria-label="Filtrar proyectos">
-      <button class="filtro-btn active" data-cat="todos">Todos</button>
-      <button class="filtro-btn" data-cat="placas">Placas Comerciales</button>
+    <p class="section-label" data-i18n="proy.label">Trabajos</p>
+    <h2 class="section-title" data-i18n="proy.title">Proyectos seleccionados</h2>
+    <div class="filtros" role="group" aria-label="Filtrar proyectos" data-i18n-aria="proy.filtrar">
+      <button class="filtro-btn active" data-cat="todos" data-i18n="cat.todos">Todos</button>
+      <button class="filtro-btn" data-cat="placas" data-i18n="cat.placas">Placas Comerciales</button>
       <button class="filtro-btn" data-cat="emkt">Email Marketing</button>
       <button class="filtro-btn" data-cat="pop">POP</button>
-      <button class="filtro-btn" data-cat="editorial">Editorial</button>
-      <button class="filtro-btn" data-cat="branding">Logos</button>
-      <button class="filtro-btn" data-cat="exhibicion">Exhibición</button>
+      <button class="filtro-btn" data-cat="editorial" data-i18n="cat.editorial">Editorial</button>
+      <button class="filtro-btn" data-cat="branding" data-i18n="cat.logos">Logos</button>
+      <button class="filtro-btn" data-cat="exhibicion" data-i18n="cat.exhibicion">Exhibición</button>
     </div>
   </div>
 
@@ -1548,8 +1616,8 @@
         <img class="proyecto-img" src="imagenes/placas/diadelnino-04-cover.jpg" alt="" loading="lazy" decoding="async"/>
         <img class="proyecto-img" src="imagenes/placas/diadelpadre-essence-cover.jpg" alt="" loading="lazy" decoding="async"/>
         <span class="proyecto-overlay">
-          <span class="proyecto-cat">Placas Comerciales</span>
-          <span class="proyecto-nombre">Fechas especiales</span>
+          <span class="proyecto-cat" data-i18n="cat.placas">Placas Comerciales</span>
+          <span class="proyecto-nombre" data-i18n="p.fechas">Fechas especiales</span>
         </span>
       </button>
 
@@ -1561,8 +1629,8 @@
         <img class="proyecto-img" src="imagenes/placas/neon-30-cover.jpg" alt="" loading="lazy" decoding="async"/>
         <img class="proyecto-img" src="imagenes/placas/ecoflow-river3-cover.jpg" alt="" loading="lazy" decoding="async"/>
         <span class="proyecto-overlay">
-          <span class="proyecto-cat">Placas Comerciales</span>
-          <span class="proyecto-nombre">Novedades</span>
+          <span class="proyecto-cat" data-i18n="cat.placas">Placas Comerciales</span>
+          <span class="proyecto-nombre" data-i18n="p.novedades">Novedades</span>
         </span>
       </button>
 
@@ -1575,8 +1643,8 @@
         <img class="proyecto-img" src="imagenes/placas/foxbox-flux20-cover.jpg" alt="" loading="lazy" decoding="async"/>
         <img class="proyecto-img" src="imagenes/placas/mega-cargadores-cover.jpg" alt="" loading="lazy" decoding="async"/>
         <span class="proyecto-overlay">
-          <span class="proyecto-cat">Placas Comerciales</span>
-          <span class="proyecto-nombre">Campañas y ofertas</span>
+          <span class="proyecto-cat" data-i18n="cat.placas">Placas Comerciales</span>
+          <span class="proyecto-nombre" data-i18n="p.campanas">Campañas y ofertas</span>
         </span>
       </button>
 
@@ -1589,7 +1657,7 @@
               data-imgs="imagenes/banners/fitring.webp">
         <img class="proyecto-img" src="imagenes/banners/fitring.webp" alt="Banner animado FitRing — Foxbox" width="1138" height="196" loading="lazy" decoding="async"/>
         <span class="proyecto-overlay">
-          <span class="proyecto-cat">Placas Comerciales</span>
+          <span class="proyecto-cat" data-i18n="cat.placas">Placas Comerciales</span>
           <span class="proyecto-nombre">Banner FitRing</span>
         </span>
       </button>
@@ -1598,7 +1666,7 @@
               data-imgs="imagenes/banners/pixel.webp">
         <img class="proyecto-img" src="imagenes/banners/pixel.webp" alt="Banner animado Pixel — Foxbox" width="1138" height="196" loading="lazy" decoding="async"/>
         <span class="proyecto-overlay">
-          <span class="proyecto-cat">Placas Comerciales</span>
+          <span class="proyecto-cat" data-i18n="cat.placas">Placas Comerciales</span>
           <span class="proyecto-nombre">Banner Pixel</span>
         </span>
       </button>
@@ -1615,8 +1683,8 @@
         <img class="proyecto-img" src="imagenes/productos/foxbox-xpand-1-cover.jpg" alt="" loading="lazy" decoding="async"/>
         <img class="proyecto-img" src="imagenes/productos/foxbox-xpand-2-cover.jpg" alt="" loading="lazy" decoding="async"/>
         <span class="proyecto-overlay">
-          <span class="proyecto-cat">Placas Comerciales</span>
-          <span class="proyecto-nombre">Fichas de producto</span>
+          <span class="proyecto-cat" data-i18n="cat.placas">Placas Comerciales</span>
+          <span class="proyecto-nombre" data-i18n="p.fichas">Fichas de producto</span>
         </span>
       </button>
 
@@ -1625,8 +1693,8 @@
         <img class="proyecto-img activa" src="imagenes/productos/foxbox-hub-cover.jpg" alt="Accesorios Foxbox — hub 6 en 1" loading="lazy" decoding="async"/>
         <img class="proyecto-img" src="imagenes/productos/foxbox-infinity-cover.jpg" alt="" loading="lazy" decoding="async"/>
         <span class="proyecto-overlay">
-          <span class="proyecto-cat">Placas Comerciales</span>
-          <span class="proyecto-nombre">Accesorios</span>
+          <span class="proyecto-cat" data-i18n="cat.placas">Placas Comerciales</span>
+          <span class="proyecto-nombre" data-i18n="p.accesorios">Accesorios</span>
         </span>
       </button>
 
@@ -1637,8 +1705,8 @@
         <img class="proyecto-img" src="imagenes/productos/jbl-go4-cover.jpg" alt="" loading="lazy" decoding="async"/>
         <img class="proyecto-img" src="imagenes/productos/alo-moon-cover.jpg" alt="" loading="lazy" decoding="async"/>
         <span class="proyecto-overlay">
-          <span class="proyecto-cat">Placas Comerciales</span>
-          <span class="proyecto-nombre">Fichas de producto</span>
+          <span class="proyecto-cat" data-i18n="cat.placas">Placas Comerciales</span>
+          <span class="proyecto-nombre" data-i18n="p.fichas">Fichas de producto</span>
         </span>
       </button>
 
@@ -1726,49 +1794,72 @@
               data-pdf="pdfs/catalogo-ef26.pdf" data-spread="1" data-portada="1" style="aspect-ratio: 842 / 595;">
         <img class="proyecto-img" src="imagenes/catalogo-ecoflow-mockup.jpg" alt="Catálogo EcoFlow 2026 abierto sobre una superficie" width="1800" height="1284" decoding="async" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; z-index: 2; transition: opacity 0.7s ease;"/>
         <span class="proyecto-overlay">
-          <span class="proyecto-cat">Editorial · Catálogo digital</span>
+          <span class="proyecto-cat" data-i18n="cat.edCat">Editorial · Catálogo digital</span>
           <span class="proyecto-nombre">Catálogo EcoFlow 2026</span>
         </span>
       </button>
 
       <button class="proyecto-card pdf-card" data-cat="editorial" data-nombre="Revista mensual — abril 2025"
               data-pdf="pdfs/revista-mensual-abril-2025.pdf" style="aspect-ratio: 685 / 968;">
-        <span class="pdf-loading">Cargando…</span>
+        <span class="pdf-loading" data-i18n="ui.cargando">Cargando…</span>
         <span class="proyecto-overlay">
-          <span class="proyecto-cat">Editorial · Revista digital · Vertical</span>
+          <span class="proyecto-cat" data-i18n="cat.edRev">Editorial · Revista digital · Vertical</span>
           <span class="proyecto-nombre">Revista mensual — abril 2025</span>
         </span>
       </button>
 
       <button class="proyecto-card pdf-card ed-recorte" data-cat="editorial" data-nombre="Catálogo Día del Niño 2024"
               data-pdf="pdfs/catalogo-nino-2024.pdf" style="aspect-ratio: 595 / 842;">
-        <span class="pdf-loading">Cargando…</span>
+        <span class="pdf-loading" data-i18n="ui.cargando">Cargando…</span>
         <span class="proyecto-overlay">
-          <span class="proyecto-cat">Editorial · Catálogo digital · Vertical</span>
+          <span class="proyecto-cat" data-i18n="cat.edCatV">Editorial · Catálogo digital · Vertical</span>
           <span class="proyecto-nombre">Catálogo Día del Niño 2024</span>
         </span>
       </button>
 
     </div>
 
-    <button class="proyecto-card span-5" data-cat="exhibicion" data-nombre="Exhibición 01"
-            data-imgs="imagenes/exhibicion-01.jpg,imagenes/exhibicion-01b.jpg">
-      <img class="proyecto-img" src="imagenes/exhibicion-01.jpg" alt="Exhibición 01" width="1200" height="900" loading="lazy" decoding="async"/>
-      <span class="proyecto-overlay">
-        <span class="proyecto-cat">Exhibición</span>
-        <span class="proyecto-nombre">Exhibición 01</span>
-      </span>
-    </button>
+    <div class="carruseles stand">
+      <p class="bloque-label">Stand de feria</p>
 
-    <button class="proyecto-card span-7" data-cat="exhibicion" data-nombre="Exhibición 02"
-            data-imgs="imagenes/exhibicion-02.jpg">
-      <span class="proyecto-chip">Destacado</span>
-      <img class="proyecto-img" src="imagenes/exhibicion-02.jpg" alt="Exhibición 02" width="1200" height="900" loading="lazy" decoding="async"/>
-      <span class="proyecto-overlay">
-        <span class="proyecto-cat">Exhibición</span>
-        <span class="proyecto-nombre">Exhibición 02</span>
-      </span>
-    </button>
+      <button class="carrusel proyecto-card" data-cat="exhibicion" data-nombre="Stand Retail 100 — Foxbox Group"
+              data-imgs="imagenes/exhibicion/foxbox-retail100-1.jpg,imagenes/exhibicion/foxbox-retail100-2.jpg">
+        <span class="proyecto-chip" data-i18n="chip.destacado">Destacado</span>
+        <img class="proyecto-img activa" src="imagenes/exhibicion/foxbox-retail100-1.jpg" alt="Stand de Foxbox Group en Retail 100" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/exhibicion/foxbox-retail100-2.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat" data-i18n="cat.exhibicion">Exhibición</span>
+          <span class="proyecto-nombre" data-i18n="p.exhStand">Stand Retail 100 — Foxbox Group</span>
+        </span>
+      </button>
+
+    </div>
+
+    <div class="carruseles exhib">
+      <p class="bloque-label">Exhibidores en punto de venta</p>
+
+      <button class="carrusel proyecto-card" data-cat="exhibicion" data-nombre="Exhibidor EcoFlow — Sodimac"
+              data-imgs="imagenes/exhibicion/ecoflow-sodimac-1.jpg,imagenes/exhibicion/ecoflow-sodimac-2.jpg">
+        <img class="proyecto-img activa" src="imagenes/exhibicion/ecoflow-sodimac-1.jpg" alt="Exhibidor de EcoFlow en Sodimac" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/exhibicion/ecoflow-sodimac-2.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat" data-i18n="cat.exhibicion">Exhibición</span>
+          <span class="proyecto-nombre" data-i18n="p.exhSodimac">EcoFlow — Sodimac</span>
+        </span>
+      </button>
+
+      <button class="carrusel proyecto-card" data-cat="exhibicion" data-nombre="Exhibidores EcoFlow — Ferreterías"
+              data-imgs="imagenes/exhibicion/ecoflow-ferromundo.jpg,imagenes/exhibicion/ecoflow-peusso.jpg,imagenes/exhibicion/ecoflow-ferreteria.jpg">
+        <img class="proyecto-img activa" src="imagenes/exhibicion/ecoflow-ferromundo.jpg" alt="Exhibidor de EcoFlow en Ferromundo" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/exhibicion/ecoflow-peusso.jpg" alt="" loading="lazy" decoding="async"/>
+        <img class="proyecto-img" src="imagenes/exhibicion/ecoflow-ferreteria.jpg" alt="" loading="lazy" decoding="async"/>
+        <span class="proyecto-overlay">
+          <span class="proyecto-cat" data-i18n="cat.exhibicion">Exhibición</span>
+          <span class="proyecto-nombre" data-i18n="p.exhFerreterias">EcoFlow — Ferreterías</span>
+        </span>
+      </button>
+
+    </div>
 
   </div>
 </section>
@@ -1778,14 +1869,14 @@
   <div class="about-body">
     <div class="about-col">
     <div class="about-header">
-      <p class="section-label">Quién soy</p>
-      <h2 class="section-title">Sobre mí</h2>
+      <p class="section-label" data-i18n="about.label">Quién soy</p>
+      <h2 class="section-title" data-i18n="about.title">Sobre mí</h2>
     </div>
     <div class="about-content">
-      <p class="about-text">
-        Soy diseñador gráfico, con base en Córdoba, Argentina y más de 8 años de experiencia. Trabajo en proyectos de identidad visual, diseño editorial, comunicación comercial y diseño de espacios.
+      <p class="about-text" data-i18n="about.p1">
+        Diseñador gráfico con más de 8 años de experiencia en identidad visual, comunicación comercial, diseño editorial y producción gráfica. Experiencia en equipos de marketing y en el desarrollo de sistemas visuales aplicados a distintos canales, desde e-commerce y retail hasta piezas editoriales y materiales impresos.
       </p>
-      <p class="about-text">
+      <p class="about-text" data-i18n="about.p2">
         Me interesa entender cada proyecto en profundidad y encontrar una solución visual que responda a sus necesidades. Desde la construcción de una marca hasta el diseño de las piezas y espacios donde se presenta, busco que cada elemento forme parte de un sistema claro y coherente.
       </p>
     </div>
@@ -1794,9 +1885,9 @@
     <!-- CONTACTO -->
     <section id="contacto" class="reveal">
       <div class="contacto-inner">
-        <p class="section-label">Hablemos</p>
-        <h2 class="contacto-title">¿Tenés un<br/><span>proyecto</span><br/>en mente?</h2>
-        <p class="contacto-invita">¡Contactame!</p>
+        <p class="section-label" data-i18n="cont.label">Hablemos</p>
+        <h2 class="contacto-title" data-i18n-html="cont.title">¿Tenés un<br/><span>proyecto</span><br/>en mente?</h2>
+        <p class="contacto-invita" data-i18n="cont.invita">¡Contactame!</p>
         <a class="contacto-email" href="mailto:tomasmanitta@gmail.com?subject=Consulta%20desde%20el%20portfolio">
           <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex-shrink:0;opacity:0.7"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
           tomasmanitta@gmail.com
@@ -1808,7 +1899,7 @@
 
 
 <footer>
-  <span>© 2026 Tomás Manitta — Diseñador Gráfico</span>
+  <span data-i18n="foot.rol">© 2026 Tomás Manitta — Diseñador Gráfico</span>
   <span>Córdoba, Argentina</span>
 </footer>
 
@@ -1820,9 +1911,9 @@
       <span class="maillb-title" id="mailLbTitle"></span>
     </div>
     <div class="maillb-acciones">
-      <button class="maillb-btn" id="mailLbPrev" type="button" aria-label="Pieza anterior">←</button>
-      <button class="maillb-btn" id="mailLbNext" type="button" aria-label="Pieza siguiente">→</button>
-      <button class="maillb-btn" id="mailLbClose" type="button" aria-label="Cerrar">Cerrar</button>
+      <button class="maillb-btn" id="mailLbPrev" type="button" aria-label="Pieza anterior" data-i18n-aria="ui.anterior">←</button>
+      <button class="maillb-btn" id="mailLbNext" type="button" aria-label="Pieza siguiente" data-i18n-aria="ui.siguiente">→</button>
+      <button class="maillb-btn" id="mailLbClose" type="button" aria-label="Cerrar" data-i18n="ui.cerrar" data-i18n-aria="ui.cerrar">Cerrar</button>
     </div>
   </div>
   <div class="maillb-scroll" id="mailLbScroll">
@@ -1867,7 +1958,7 @@
       <h2 class="pdfv-title" id="pdfvTitle"></h2>
     </div>
     <div class="pdfv-tools">
-      <button class="pdfv-btn" id="pdfvSpread" aria-pressed="false" title="Ver en pliego doble">Pliego</button>
+      <button class="pdfv-btn" id="pdfvSpread" aria-pressed="false" title="Ver en pliego doble" data-i18n="ui.pliego" data-i18n-title="ui.pliegoT">Pliego</button>
       <button class="pdfv-btn" id="pdfvClose" aria-label="Cerrar visor">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" aria-hidden="true"><path d="M18 6 6 18M6 6l12 12"/></svg>
       </button>
@@ -2335,6 +2426,8 @@
     document.querySelectorAll('.carruseles').forEach(function (caja) {
       var cols = Array.prototype.slice.call(caja.querySelectorAll('.carrusel'));
       if (cols.length < 3) return;
+      /* los exhibidores son de locales distintos: no se mezclan entre columnas */
+      if (caja.classList.contains('exhib')) return;
       /* en POP la tercera marca entra completa en la primera columna */
       var base = caja.classList.contains('pop') ? cols.slice(0, 1) : cols.slice(0, 2);
       var destinos = base.map(function (c) {
@@ -2798,5 +2891,113 @@
 })();
 </script>
 
+<!-- IDIOMA -->
+<script>
+(function () {
+  var EN = {
+    'nav.servicios': 'What I do',
+    'nav.proyectos': 'Work',
+    'nav.sobre': 'About',
+    'nav.contacto': 'Contact',
+    'hero.eyebrow': 'Graphic Designer · Córdoba, Argentina',
+    'hero.cta': 'View work',
+    'serv.label': 'Specialties',
+    'serv.title': 'What I do',
+    'serv.branding': 'Branding',
+    'serv.brandingD': 'Full visual identity: logo, brand system, palette, typography and usage guidelines.',
+    'serv.editorial': 'Editorial Design',
+    'serv.editorialD': 'Catalogs, magazines, books and printed material, with layout and prepress ready for the press.',
+    'serv.placas': 'Commercial Graphics',
+    'serv.placasD': 'Social media and campaign assets, adapted to each format and to the brand’s graphic system.',
+    'serv.stands': 'Stands & Events',
+    'serv.standsD': 'Stands, vinyl graphics and set design for fairs and expos, from concept to build drawings.',
+    'serv.muebles': 'Display Furniture',
+    'serv.mueblesD': 'Point-of-sale and retail furniture: concept, materials and cut lists.',
+    'serv.emktD': 'Newsletters and email campaigns built to render well in any mail client.',
+    'proy.label': 'Work',
+    'proy.title': 'Selected projects',
+    'proy.filtrar': 'Filter projects',
+    'cat.todos': 'All',
+    'cat.placas': 'Commercial Graphics',
+    'cat.editorial': 'Editorial',
+    'cat.logos': 'Logos',
+    'cat.exhibicion': 'Display',
+    'cat.edCat': 'Editorial · Digital catalog',
+    'cat.edRev': 'Editorial · Digital magazine · Vertical',
+    'cat.edCatV': 'Editorial · Digital catalog · Vertical',
+    'p.fechas': 'Seasonal dates',
+    'p.novedades': 'New arrivals',
+    'p.campanas': 'Campaigns and offers',
+    'p.fichas': 'Product sheets',
+    'p.accesorios': 'Accessories',
+    'p.exhStand': 'Retail 100 booth — Foxbox Group',
+    'p.exhSodimac': 'EcoFlow — Sodimac',
+    'p.exhFerreterias': 'EcoFlow — Hardware stores',
+    'chip.destacado': 'Featured',
+    'ui.cargando': 'Loading…',
+    'about.label': 'Who I am',
+    'about.title': 'About me',
+    'about.p1': 'Graphic designer with over 8 years of experience in visual identity, commercial communication, editorial design and print production. Experienced working within marketing teams and developing visual systems applied across channels, from e-commerce and retail to editorial pieces and printed materials.',
+    'about.p2': 'I care about understanding each project in depth and finding a visual solution that answers its needs. From building a brand to designing the pieces and spaces where it appears, I aim for every element to be part of a clear, coherent system.',
+    'cont.label': 'Let’s talk',
+    'cont.title': 'Got a<br/><span>project</span><br/>in mind?',
+    'cont.invita': 'Get in touch!',
+    'foot.rol': '© 2026 Tomás Manitta — Graphic Designer',
+    'ui.anterior': 'Previous piece',
+    'ui.siguiente': 'Next piece',
+    'ui.cerrar': 'Close',
+    'ui.pliego': 'Spread',
+    'ui.pliegoT': 'View as double spread'
+  };
+
+  var nodos = document.querySelectorAll('[data-i18n], [data-i18n-html], [data-i18n-aria], [data-i18n-title]');
+  var ES = [];
+  nodos.forEach(function (el) {
+    ES.push({
+      el: el,
+      text: el.textContent,
+      html: el.innerHTML,
+      aria: el.getAttribute('aria-label'),
+      title: el.getAttribute('title')
+    });
+  });
+
+  var boton = document.getElementById('langToggle');
+
+  function aplicar(lang) {
+    ES.forEach(function (o) {
+      var el = o.el;
+      var k = el.getAttribute('data-i18n');
+      var kh = el.getAttribute('data-i18n-html');
+      var ka = el.getAttribute('data-i18n-aria');
+      var kt = el.getAttribute('data-i18n-title');
+      if (lang === 'en') {
+        if (kh && EN[kh]) el.innerHTML = EN[kh];
+        else if (k && EN[k]) el.textContent = EN[k];
+        if (ka && EN[ka]) el.setAttribute('aria-label', EN[ka]);
+        if (kt && EN[kt]) el.setAttribute('title', EN[kt]);
+      } else {
+        if (kh) el.innerHTML = o.html;
+        else if (k) el.textContent = o.text;
+        if (ka && o.aria !== null) el.setAttribute('aria-label', o.aria);
+        if (kt && o.title !== null) el.setAttribute('title', o.title);
+      }
+    });
+    document.documentElement.setAttribute('lang', lang);
+    boton.classList.toggle('en', lang === 'en');
+    boton.setAttribute('aria-pressed', lang === 'en' ? 'true' : 'false');
+    actual = lang;
+    try { localStorage.setItem('tm-lang', lang); } catch (e) {}
+  }
+
+  var actual = 'es';
+  var guardado = null;
+  try { guardado = localStorage.getItem('tm-lang'); } catch (e) {}
+  var nav = (navigator.language || 'es').toLowerCase();
+  aplicar(guardado || (nav.indexOf('es') === 0 ? 'es' : 'en'));
+
+  boton.addEventListener('click', function () { aplicar(actual === 'es' ? 'en' : 'es'); });
+})();
+</script>
 </body>
 </html>
