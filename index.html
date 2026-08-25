@@ -2994,7 +2994,13 @@
   var guardado = null;
   try { guardado = localStorage.getItem('tm-lang'); } catch (e) {}
   var nav = (navigator.language || 'es').toLowerCase();
-  aplicar(guardado || (nav.indexOf('es') === 0 ? 'es' : 'en'));
+  /* ?lang=en / ?lang=es en la URL manda sobre lo guardado (links del CV) */
+  var pedido = null;
+  try {
+    var p = (new URLSearchParams(location.search)).get('lang');
+    if (p === 'en' || p === 'es') pedido = p;
+  } catch (e) {}
+  aplicar(pedido || guardado || (nav.indexOf('es') === 0 ? 'es' : 'en'));
 
   boton.addEventListener('click', function () { aplicar(actual === 'es' ? 'en' : 'es'); });
 })();
